@@ -8,8 +8,7 @@ namespace u1w.player
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] InputObserver _input;
-
-        public GameObject NowTile;
+        PlayerCore _playerCore;
 
         // Start is called before the first frame update
         void Start()
@@ -29,25 +28,17 @@ namespace u1w.player
             _input.OnD
             .Subscribe(_ => Check(Direction.east))
             .AddTo(this);
+
+            _playerCore = u1w.player.PlayerCore.I;
         }
 
         void Check(Direction d){
-            //本来はチェックして実行
-            this.gameObject.transform.position = NowTile.GetComponent<ITileForPlayer>().GetPos(d);
+            //本来は壁かどうかチェックして実行
+            this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetPos(d);
             //オフセット
             this.gameObject.transform.position += new Vector3(0,2,0);
 
-            
-            //移動後に今の位置を取得
-            Ray Ray = new Ray (transform.position + new Vector3 (0, 0, 0), Vector3.down);
-            RaycastHit hit;
-
-            //デバッグ
-            Debug.DrawRay(Ray.origin, Ray.direction * 10, Color.red,10f);
-
-            if (Physics.Raycast(Ray,out hit)){
-                NowTile = hit.collider.gameObject;
-            }
+            _playerCore.GetTile();
         }
 
     }

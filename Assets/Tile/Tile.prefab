@@ -131,5 +131,6 @@ MonoBehaviour:
   flame: {fileID: 2100000, guid: 77391a605f8f5214a97cc3b2a183d08f, type: 2}
   water: {fileID: 2100000, guid: 00471bf8873a7234a9156c74a7929e18, type: 2}
   wind: {fileID: 2100000, guid: bfb5769351c7d144e9b49f5a7f9c6807, type: 2}
+  none: {fileID: 2100000, guid: b77bade63995f5943bb7a3129caa5416, type: 2}
   _tile: {fileID: 1246968911781109295}
   _mesh: {fileID: 1246968911781109289}

@@ -8,6 +8,8 @@ public interface ITileForPlayer
     public Color Color{get;}
 
     public Vector3 GetPos(Direction dir);
+
+    public void DeleteColor();
 }
 
 /// <summary>
