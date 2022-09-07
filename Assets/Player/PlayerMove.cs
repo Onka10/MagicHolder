@@ -8,24 +8,34 @@ namespace u1w.player
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] InputObserver _input;
+        [SerializeField] StepCounter _stepCounter;
+
+        PhaseManager _phaseManager;
+
         PlayerCore _playerCore;
 
         // Start is called before the first frame update
         void Start()
         {
+            _phaseManager = PhaseManager.I;
+
             _input.OnW
+            .Where(_ => _phaseManager.CanMove)
             .Subscribe(_ => Check(Direction.north))
             .AddTo(this);
 
             _input.OnA
+            .Where(_ => _phaseManager.CanMove)
             .Subscribe(_ => Check(Direction.west))
             .AddTo(this);
 
             _input.OnS
+            .Where(_ => _phaseManager.CanMove)
             .Subscribe(_ => Check(Direction.south))
             .AddTo(this);
 
             _input.OnD
+            .Where(_ => _phaseManager.CanMove)
             .Subscribe(_ => Check(Direction.east))
             .AddTo(this);
 
@@ -38,6 +48,7 @@ namespace u1w.player
             //オフセット
             this.gameObject.transform.position += new Vector3(0,2,0);
 
+            _stepCounter.Count();
             _playerCore.GetTile();
         }
 
