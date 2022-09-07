@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using UniRx;
 
 namespace u1w.Tile
 {
@@ -11,6 +13,10 @@ namespace u1w.Tile
         
         // 生成したオブジェクトの親オブジェクトへの参照を保持します。
         // public Transform parentTran;
+
+
+        public UniTask FuncAsync => _uniTaskCompletionSource.Task;
+        private readonly UniTaskCompletionSource _uniTaskCompletionSource = new UniTaskCompletionSource();
 
 
         [SerializeField] int row = 10;
@@ -56,6 +62,9 @@ namespace u1w.Tile
                     objMM.transform.localPosition = new Vector3(xPos * -1, 0f, zPos * -1);
                 }
             }
+
+            //生成の終了通知
+            _uniTaskCompletionSource.TrySetResult();
 
         }
     }
