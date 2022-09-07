@@ -8,7 +8,7 @@ namespace u1w.Tile{
     {
         #region プロパティ
         //色
-        public Color Color => _color.Value;
+        [SerializeField] public Color Color => _color.Value;
         public IReadOnlyReactiveProperty<Color> ColorR => _color;
         private readonly ReactiveProperty<Color> _color = new ReactiveProperty<Color>();
 
@@ -25,14 +25,14 @@ namespace u1w.Tile{
 
         void Start(){
             _pos = this.gameObject.transform.position;
-            SetColor();
+            FirstSetColor();
 
             GameManager.I.Ready2
             .Subscribe(_ => GetRay())
             .AddTo(this);
         }
 
-        void SetColor(){
+        void FirstSetColor(){
             int rand = UnityEngine.Random.Range(0,3);
 
             if(rand == 0)      _color.Value = Color.red;
@@ -73,13 +73,11 @@ namespace u1w.Tile{
             Vector3 pos = new Vector3();
 
             pos = Dire[(int)dir];
-            // if(dir == Direction.north) pos =  Dire[0];
-            // else if(dir == Direction.east) pos =  Dire[1];
-            // else if(dir == Direction.south) pos =  Dire[2];
-            // else if(dir == Direction.west) pos =  Dire[3];
-            // else throw new System.Exception("方向がおかしい");
-
             return pos;
+        }
+
+        public void DeleteColor(){
+            _color.Value = Color.black;
         }
     }
 }
