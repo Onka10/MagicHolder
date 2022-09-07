@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
-public class TileView : MonoBehaviour
+namespace u1w.Tile
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TileView : MonoBehaviour
     {
-        
+        // マテリアルを保持します。
+        public Material flame;
+        public Material water;
+        public Material wind;
+
+        [SerializeField] Tile.Title _tile;
+
+        [SerializeField] MeshRenderer _mesh;
+        void Start(){
+            _tile.ColorR
+            .Subscribe(color => MaterialChange(color))
+            .AddTo(this);
+        }
+
+        void MaterialChange(Color c){
+            if(c == Color.red)      _mesh.material = flame;
+            else if(c == Color.green) _mesh.material = wind;
+            else if(c == Color.blue) _mesh.material = water;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

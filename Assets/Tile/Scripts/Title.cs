@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 namespace u1w.Tile{
     public class Title : MonoBehaviour,ITileForPlayer,ITileForManager
     {
         #region プロパティ
         //色
-        public Color Color => _color;
-        [SerializeField]private Color _color;
+        public Color Color => _color.Value;
+        public IReadOnlyReactiveProperty<Color> ColorR => _color;
+        private readonly ReactiveProperty<Color> _color = new ReactiveProperty<Color>();
+
         
         //自身の座標
         public Vector3 Pos => _pos;
@@ -23,18 +26,17 @@ namespace u1w.Tile{
         void Start(){
             _pos = this.gameObject.transform.position;
             SetColor();
-            RayTest();
         }
 
         void SetColor(){
             int rand = UnityEngine.Random.Range(0,3);
 
-            if(rand == 0)      _color = Color.red;
-            else if(rand == 1) _color = Color.blue;
-            else if(rand == 2) _color = Color.green;
+            if(rand == 0)      _color.Value = Color.red;
+            else if(rand == 1) _color.Value = Color.blue;
+            else if(rand == 2) _color.Value = Color.green;
         }
 
-        void RayTest(){
+        void GetRay(){
             Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.forward);
             Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.left);
             Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.back);
