@@ -26,6 +26,10 @@ namespace u1w.Tile{
         void Start(){
             _pos = this.gameObject.transform.position;
             SetColor();
+
+            GameManager.I.Ready2
+            .Subscribe(_ => GetRay())
+            .AddTo(this);
         }
 
         void SetColor(){
@@ -37,10 +41,10 @@ namespace u1w.Tile{
         }
 
         void GetRay(){
-            Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.forward);
-            Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.left);
-            Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.back);
-            Ray westRay = new Ray (transform.position + new Vector3 (0, 0, 0.4f), Vector3.right);
+            Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,1));
+            Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(1,0,0));
+            Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,-1));
+            Ray westRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(-1,0,0));
             RaycastHit hit;
             
             //デバッグ
@@ -68,10 +72,12 @@ namespace u1w.Tile{
         public Vector3 GetPos(Direction dir){
             Vector3 pos = new Vector3();
 
-            if(dir == Direction.north) pos =  Dire[0];
-            else if(dir == Direction.east) pos =  Dire[1];
-            else if(dir == Direction.south) pos =  Dire[2];
-            else if(dir == Direction.west) pos =  Dire[2];
+            pos = Dire[(int)dir];
+            // if(dir == Direction.north) pos =  Dire[0];
+            // else if(dir == Direction.east) pos =  Dire[1];
+            // else if(dir == Direction.south) pos =  Dire[2];
+            // else if(dir == Direction.west) pos =  Dire[3];
+            // else throw new System.Exception("方向がおかしい");
 
             return pos;
         }

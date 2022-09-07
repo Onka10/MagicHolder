@@ -1,7 +1,16 @@
 public enum Direction
 {
-    north 	=8,
+    north 	=0,
+    east 	=1,
     south 	=2,
-    east 	=6,
-    west    =4
+    west    =3
+}
+
+
+public enum GameState
+{
+    Title=0,
+    Ready=1,
+    InGame=2,
+    Result=3
 }
