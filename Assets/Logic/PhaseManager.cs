@@ -1,5 +1,6 @@
 using UniRx;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace u1w
 {
@@ -7,7 +8,9 @@ namespace u1w
     {
 
         public bool CanMove => _canMove;
-        private bool _canMove;
+        private bool _canMove=false;
+
+        [SerializeField] u1w.player.StepCounter _stepCounter;
 
         void Start()
         {
@@ -18,24 +21,38 @@ namespace u1w
         }
 
         private async UniTaskVoid PhaseFlow(){
-            //色々初期化
-            //歩数が決まる今は固定。色をリフレッシュ。
+            
+            while(true){
+                //色々初期化
+                //歩数が決まる今は固定。色をリフレッシュ。
+                _stepCounter.InitData();
+                Debug.Log("初期化");
 
-            //岩を出現させる
-            //次の岩予測が公開
+                //岩を出現させる
+                //次の岩予測が公開
+                Debug.Log("岩フェーズ");
 
-            //プレイヤー移動フェーズ
-            _canMove = true;
+                //プレイヤー移動フェーズ
+                Debug.Log("プレイヤー移動開始");
+                _canMove = true;
 
-            await UniTask.Delay(1000);
+                // await _stepCounter.StepAsync;
+                await UniTask.WaitUntil(() => _stepCounter.TurnEnd);
 
-            //向きかえ？未定
+                _canMove = false;
 
-            //魔法発動！
+                //向きかえ？未定
 
-            //生存している岩が攻撃を行う
+                //魔法発動！
+                Debug.Log("攻撃");
+                await UniTask.Delay(1000);
 
-            //終わり
+                //生存している岩が攻撃を行う
+                Debug.Log("岩攻撃");
+                await UniTask.Delay(1000);
+
+                //終わり
+            }
 
         }
 
