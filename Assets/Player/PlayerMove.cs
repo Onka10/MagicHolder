@@ -14,6 +14,8 @@ namespace u1w.player
 
         PlayerCore _playerCore;
 
+        public Direction NowDirection;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -46,7 +48,11 @@ namespace u1w.player
             //本来は壁かどうかチェックして実行
             this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetPos(d);
             //オフセット
-            this.gameObject.transform.position += new Vector3(0,2,0);
+            this.gameObject.transform.position += new Vector3(0,1,0);
+
+            //方向を変える
+            this.gameObject.transform.eulerAngles = Dictionaries.OwnDirDictionary[d];
+            NowDirection = d;
 
             _stepCounter.Count();
             _playerCore.GetTile();
