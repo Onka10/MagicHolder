@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Magic : MonoBehaviour
+public class Magic
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    int atk;
+
+    int Flame;
+    int Water;
+    int Wind;
+
+
+    public Magic(int R,int G, int B){
+        Flame = R;
+        Water = B;
+        Wind = G;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public int GetAtk(){
+        return 10;
     }
 }

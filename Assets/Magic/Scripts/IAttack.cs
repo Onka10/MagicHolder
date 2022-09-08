@@ -4,5 +4,5 @@
 public interface IAttack
 {
     //自分のガチ座標
-    public void Damaged();
-} 
+    public void Damaged(Magic magic);
+}
