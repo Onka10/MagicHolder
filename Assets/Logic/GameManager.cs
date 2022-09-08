@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
     private async UniTask Ready(){
         //tileの生成
         await _tileManager.FuncAsync;
-        await UniTask.Delay(1000);
+        await UniTask.Delay(500);
         Debug.Log("rayとばすよ");
         //rayを飛ばす指示
         _ready2.OnNext(Unit.Default);

@@ -11,6 +11,8 @@ namespace u1w
         private bool _canMove=false;
 
         [SerializeField] u1w.player.StepCounter _stepCounter;
+        [SerializeField] u1w.Rock.RockFactory _rockFactory;
+        [SerializeField] u1w.player.PlayerAttack _playerAttack;
 
         void Start()
         {
@@ -26,11 +28,12 @@ namespace u1w
                 //色々初期化
                 //歩数が決まる今は固定。色をリフレッシュ。
                 _stepCounter.InitData();
-                Debug.Log("初期化");
+                // Debug.Log("初期化");
 
                 //岩を出現させる
+                _rockFactory.InstantRock();
                 //次の岩予測が公開
-                Debug.Log("岩フェーズ");
+                // Debug.Log("岩フェーズ");
 
                 //プレイヤー移動フェーズ
                 Debug.Log("プレイヤー移動開始");
@@ -44,11 +47,12 @@ namespace u1w
                 //向きかえ？未定
 
                 //魔法発動！
+                _playerAttack.Attack();
                 Debug.Log("攻撃");
                 await UniTask.Delay(1000);
 
                 //生存している岩が攻撃を行う
-                Debug.Log("岩攻撃");
+                // Debug.Log("岩攻撃");
                 await UniTask.Delay(1000);
 
                 //終わり
