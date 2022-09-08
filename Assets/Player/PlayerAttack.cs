@@ -30,7 +30,7 @@ namespace u1w.player
             
             if (Physics.Raycast(Ray,out hit)){
                 hit.collider.gameObject.TryGetComponent<IAttack>(out IAttack attack);
-                attack.Damaged();
+                attack.Damaged(new Magic(1,1,1));
             }
         }
 
