@@ -44,6 +44,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7957057210144507531, guid: 5d29b67b9f5f9f24b93a0ca874004831, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957057210144507531, guid: 5d29b67b9f5f9f24b93a0ca874004831, type: 3}
       propertyPath: ShapeModule.m_Rotation.x
       value: 0
       objectReference: {fileID: 0}
