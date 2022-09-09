@@ -25,6 +25,10 @@ namespace u1w.Tile{
         TileManager _tileManager;
 
         [SerializeField] bool IsFirstTile;
+
+        public static int XID=0;
+        public static int YID=0;
+
         #endregion
 
         void Start(){
@@ -89,6 +93,10 @@ namespace u1w.Tile{
 
         public void DeleteColor(){
             _color.Value = Color.black;
+        }
+
+        public void SetID(){
+            
         }
     }
 }
