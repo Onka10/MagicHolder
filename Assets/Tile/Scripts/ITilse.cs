@@ -7,7 +7,7 @@ public interface ITileForPlayer
 {
     public Color Color{get;}
 
-    public Vector3 GetPos(Direction dir);
+    public Vector3 GetNextPos(Direction dir);
 
     public void DeleteColor();
 }

@@ -84,7 +84,7 @@ namespace u1w.Tile{
             }
         }
 
-        public Vector3 GetPos(Direction dir){
+        public Vector3 GetNextPos(Direction dir){
             Vector3 pos = new Vector3();
 
             pos = Dire[(int)dir];
@@ -95,8 +95,9 @@ namespace u1w.Tile{
             _color.Value = Color.black;
         }
 
-        public void SetID(){
-            
+        public void SetID(int x, int y){
+            XID = x;
+            YID = y;
         }
     }
 }

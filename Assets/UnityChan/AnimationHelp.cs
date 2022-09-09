@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Animations;
 using UnityEngine.Profiling;
-using System.Linq;
 
 //dancetextの変更をanimationを購読するようにしたいUniRx導入後
 
@@ -15,7 +14,7 @@ public class AnimationHelp : MonoBehaviour
 
     [SerializeField] AnimationClip anime1;
     [SerializeField] AnimationClip anime2;
-    [SerializeField] AnimationClip anime3;
+    // [SerializeField] AnimationClip anime3;
 	[Range(0, 1)] public float weight;
 
 	void Awake()
