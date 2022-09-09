@@ -12,24 +12,24 @@ namespace u1w.Rock
         private int hp=10;
 
         public GameObject DestroyEffect;
+        RockFactory _rockFactory;
 
         void Start()
         {
-            // DestroyEffect.GetComponent<ParticleSystem>().main.stopAction = ParticleSystemStopAction.Callback;
+            _rockFactory = RockFactory.I;
         }
 
         public void Damaged(Magic magic){
             hp -= magic.GetAtk();
             
-            
 
             if(hp <= 0){
-                Debug.Log("攻撃されました"+hp);
+                //エフェクト再生
                 GameObject effect = Instantiate(DestroyEffect, Vector3.zero, Quaternion.identity);
                 effect.transform.SetParent(this.gameObject.transform);
                 effect.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-                // Destroy(this.gameObject);
+                _rockFactory.DeadCall();
                 StartCoroutine("Destroy");
             }
         }        

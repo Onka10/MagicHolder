@@ -6,13 +6,11 @@ namespace u1w
 {
     public class PhaseManager : Singleton<PhaseManager>
     {
-
-        public bool CanMove => _canMove;
-        private bool _canMove=false;
+        public IReadOnlyReactiveProperty<PhaseState> State => _state;
+        private readonly ReactiveProperty<PhaseState> _state = new ReactiveProperty<PhaseState>();
 
         [SerializeField] u1w.player.StepCounter _stepCounter;
-        [SerializeField] u1w.Rock.RockFactory _rockFactory;
-        [SerializeField] u1w.player.PlayerAttack _playerAttack;
+        [SerializeField] u1w.player.PlayerCore _playerCore;
 
         void Start()
         {
@@ -25,38 +23,37 @@ namespace u1w
         private async UniTaskVoid PhaseFlow(){
             
             while(true){
-                //色々初期化
-                //歩数が決まる今は固定。色をリフレッシュ。
-                _stepCounter.InitData();
-                // Debug.Log("初期化");
+                //準備
+                _state.Value = PhaseState.Ready;
+                
+                //岩出現:岩出現、TODO 出現予想
+                _state.Value = PhaseState.EnemyInsight;
 
-                //岩を出現させる
-                _rockFactory.InstantRock();
-                //次の岩予測が公開
-                // Debug.Log("岩フェーズ");
-
-                //プレイヤー移動フェーズ
+                //プレイヤー移動
+                _state.Value = PhaseState.PlayerTurn;
                 Debug.Log("プレイヤー移動開始");
-                _canMove = true;
-
-                // await _stepCounter.StepAsync;
                 await UniTask.WaitUntil(() => _stepCounter.TurnEnd);
 
-                _canMove = false;
+                //魔法発動
+                _state.Value = PhaseState.PlayerAttack;
+                Debug.Log("プレイヤー攻撃");
+                await UniTask.Delay(2000);
 
-                //向きかえ？未定
-
-                //魔法発動！
-                _playerAttack.Attack();
-                Debug.Log("攻撃");
+                //岩が攻撃:攻撃とアニメーション終了まち
+                _state.Value = PhaseState.EnemyAttack;
+                Debug.Log("岩攻撃");
                 await UniTask.Delay(1000);
+                
+                //終了判定
+                if(_playerCore.IsGameOver) break;
 
-                //生存している岩が攻撃を行う
-                // Debug.Log("岩攻撃");
-                await UniTask.Delay(1000);
+                //ターンエンド処理:色蘇生
+                _state.Value = PhaseState.TurnEnd;
 
                 //終わり
             }
+
+            Debug.Log("ゲームオーバー");
 
         }
 

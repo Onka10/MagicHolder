@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
+using System;
 
 namespace u1w.Tile
 {
-        public class TileManager : MonoBehaviour
+        public class TileManager : Singleton<TileManager>
     {
         // オブジェクトを生成する元となるPrefabへの参照を保持します。
         public GameObject prefabObj;
-        
-        // 生成したオブジェクトの親オブジェクトへの参照を保持します。
-        // public Transform parentTran;
 
+        public IObservable<Unit> ReCharge => _recharge;
+        private readonly Subject<Unit> _recharge = new Subject<Unit>();
 
         public UniTask FuncAsync => _uniTaskCompletionSource.Task;
         private readonly UniTaskCompletionSource _uniTaskCompletionSource = new UniTaskCompletionSource();
+
+        PhaseManager _phaseManager;
 
 
         [SerializeField] int row = 10;
@@ -27,6 +29,12 @@ namespace u1w.Tile
         void Start()
         {
             CreateBlockObject();
+
+            _phaseManager = PhaseManager.I;
+            _phaseManager.State
+            .Where(s => s==PhaseState.TurnEnd)
+            .Subscribe(_ => _recharge.OnNext(Unit.Default))
+            .AddTo(this);
         }
 
         /// <Summary>

@@ -9,14 +9,17 @@ namespace u1w.player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] PlayerMove _playerMove;
-
+        PhaseManager _phaseManager;
         
-        void Start()
-        {
-            
+        void Start(){
+            _phaseManager = PhaseManager.I;
+            _phaseManager.State
+            .Where(s => s==PhaseState.PlayerAttack)
+            .Subscribe(_ => Attack())
+            .AddTo(this);
         }
 
-        public void Attack(){
+        void Attack(){
             //見た目
             PlayView();
 

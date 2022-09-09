@@ -14,3 +14,13 @@ public enum GameState
     InGame=2,
     Result=3
 }
+
+public enum PhaseState
+{
+    Ready,
+    EnemyInsight,
+    PlayerTurn,
+    PlayerAttack,
+    EnemyAttack,
+    TurnEnd
+}

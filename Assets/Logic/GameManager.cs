@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
 
 
     [SerializeField] u1w.Tile.TileManager _tileManager;
+    [SerializeField] u1w.player.PlayerCore _playerCore;
 
 
     // Start is called before the first frame update

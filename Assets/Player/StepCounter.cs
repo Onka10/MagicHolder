@@ -18,13 +18,23 @@ namespace u1w.player
         public bool TurnEnd => turnEnd;
         private bool turnEnd=false;
 
+        PhaseManager _phaseManager;
+
+        void Start(){
+            _phaseManager = PhaseManager.I;
+            _phaseManager.State
+            .Where(s => s==PhaseState.Ready)
+            .Subscribe(_ => ResetStep())
+            .AddTo(this);
+        }
+
         public void Count(){
             _step.Value++;
             // Debug.Log(_step);
             if(_step.Value == MaxStep)    turnEnd = true;
         }
 
-        public void InitData(){
+        void ResetStep(){
             turnEnd = false;
             _step.Value = 0;
         }

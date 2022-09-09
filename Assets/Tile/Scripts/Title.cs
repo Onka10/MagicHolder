@@ -9,7 +9,7 @@ namespace u1w.Tile{
         #region プロパティ
         //色
         [SerializeField] public Color Color => _color.Value;
-        public IReadOnlyReactiveProperty<Color> ColorR => _color;
+        public IReadOnlyReactiveProperty<Color> ColorReset => _color;
         private readonly ReactiveProperty<Color> _color = new ReactiveProperty<Color>();
 
         
@@ -21,18 +21,29 @@ namespace u1w.Tile{
         [SerializeField] private Vector3[] Dire = new Vector3[4];
 
         [SerializeField] float cubeHalf=0.5f;
+
+        TileManager _tileManager;
+
+        [SerializeField] bool IsFirstTile;
         #endregion
 
         void Start(){
             _pos = this.gameObject.transform.position;
-            FirstSetColor();
+            SetColor();
+            if(IsFirstTile) _color.Value = Color.black;
 
             GameManager.I.Ready2
             .Subscribe(_ => GetRay())
             .AddTo(this);
+
+            _tileManager = TileManager.I;
+            _tileManager.ReCharge
+            .Where(_ => _color.Value == Color.black)
+            .Subscribe(_ => SetColor())
+            .AddTo(this);
         }
 
-        void FirstSetColor(){
+        void SetColor(){
             int rand = UnityEngine.Random.Range(0,3);
 
             if(rand == 0)      _color.Value = Color.red;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace u1w.player
 {
@@ -14,10 +15,26 @@ namespace u1w.player
         public IObservable<Unit> UIReLoad => _reload;
         private readonly Subject<Unit> _reload = new Subject<Unit>();
 
+        public static readonly int MaxHP = 100;
+        public IReadOnlyReactiveProperty<int> HP => _hp;
+        private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(MaxHP);
+
+        public UniTask GameOverAsync => _uniTaskCompletionSource.Task;
+        private readonly UniTaskCompletionSource _uniTaskCompletionSource = new UniTaskCompletionSource();
+
+        public bool IsGameOver=false;
+
 
         //最初は0,0のTileを入れておくこと！
         public GameObject NowTile => _nowTile;
         [SerializeField]private GameObject _nowTile;
+
+        void Start(){
+            _hp
+            .Where(hp => hp <= 0)
+            .Subscribe(_ =>GameOver())
+            .AddTo(this);
+        }
 
         public void GetTile(){
             //移動後に今の位置を取得
@@ -47,6 +64,16 @@ namespace u1w.player
         void GotColor(Color color){
             _magicHolder.Add(color);
             _reload.OnNext(Unit.Default);
+        }
+
+        public void Damage(int atk){
+            _hp.Value -= atk;
+        }
+
+        void GameOver(){
+            _uniTaskCompletionSource.TrySetResult();
+            IsGameOver=true;
+
         }
     }
 }

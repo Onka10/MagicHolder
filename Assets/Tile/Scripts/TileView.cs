@@ -17,7 +17,7 @@ namespace u1w.Tile
 
         [SerializeField] MeshRenderer _mesh;
         void Start(){
-            _tile.ColorR
+            _tile.ColorReset
             .Subscribe(color => MaterialChange(color))
             .AddTo(this);
         }

@@ -22,22 +22,22 @@ namespace u1w.player
             _phaseManager = PhaseManager.I;
 
             _input.OnW
-            .Where(_ => _phaseManager.CanMove)
+            .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
             .Subscribe(_ => Check(Direction.north))
             .AddTo(this);
 
             _input.OnA
-            .Where(_ => _phaseManager.CanMove)
+            .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
             .Subscribe(_ => Check(Direction.west))
             .AddTo(this);
 
             _input.OnS
-            .Where(_ => _phaseManager.CanMove)
+            .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
             .Subscribe(_ => Check(Direction.south))
             .AddTo(this);
 
             _input.OnD
-            .Where(_ => _phaseManager.CanMove)
+            .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
             .Subscribe(_ => Check(Direction.east))
             .AddTo(this);
 
