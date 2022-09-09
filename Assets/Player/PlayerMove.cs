@@ -46,7 +46,7 @@ namespace u1w.player
 
         void Check(Direction d){
             //本来は壁かどうかチェックして実行
-            this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetPos(d);
+            this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetNextPos(d);
             //オフセット
             this.gameObject.transform.position += new Vector3(0,1,0);
 
