@@ -40,7 +40,7 @@ namespace u1w.player
             //移動後に今の位置を取得
 
             //チェックと入手を兼ねている
-            if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+            if(!new GetTile().GetTileObject(transform.position,out var result)) return;
             _nowTile = result;
 
             //色入手
