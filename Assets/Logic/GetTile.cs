@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class GetTile
 {
-    public IResultRay RayCast(Vector3 nowPosition){
+    private GameObject resultObject;
+    private bool isCompleted;
+
+
+    public bool GetTileObject(Vector3 nowPosition ,out GameObject ResultGameObject){
         Ray Ray = new Ray (nowPosition + new Vector3 (0, 0, 0), Vector3.down);
         RaycastHit hit;
 
@@ -11,33 +15,15 @@ public class GetTile
 
         if (Physics.Raycast(Ray,out hit)){
             //タイル入手
-            return new ResultRay(hit.collider.gameObject);
-        }else   return new ResultRay();
+            isCompleted = true;
+            resultObject = hit.collider.gameObject;
+        }else{
+            isCompleted = false;
 
-    }
-}
+        }
 
-public class ResultRay : IResultRay{
-    private GameObject resultObject;
-    private bool isCompleted;
-
-    public ResultRay(GameObject res){
-        isCompleted = true;
-        resultObject = res;
-    }
-
-    public ResultRay(){
-        isCompleted = false;
-    }
-
-    public bool Result(out GameObject ResultGameObject){
         ResultGameObject = resultObject;
+
         return isCompleted;
     }
 }
-
-public interface IResultRay{
-    public bool Result(out GameObject ResultGameObject);
-}
-
-

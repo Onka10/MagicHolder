@@ -10,15 +10,14 @@ namespace u1w.Rock
     {
         public int HP=>hp;
         private int hp=10;
-
-        public GameObject DestroyEffect;
         RockFactory _rockFactory;
+        [SerializeField] RockView view;
 
         void Start()
         {
             _rockFactory = RockFactory.I;
             //チェックと入手を兼ねている
-            if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+            if(!new GetTile().GetTileObject(transform.position,out var result)) return;
             result.GetComponent<IOnRock>().LockOfRock();
         }
 
@@ -28,16 +27,15 @@ namespace u1w.Rock
 
             if(hp <= 0){
                 //エフェクト再生
-                GameObject effect = Instantiate(DestroyEffect, Vector3.zero, Quaternion.identity);
-                effect.transform.SetParent(this.gameObject.transform);
-                effect.transform.localPosition = new Vector3(0f, 0f, 0f);
+                view.PlayDestroy();
 
                 //マスのLockを解除
                 //チェックと入手を兼ねている
-                if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+                if(!new GetTile().GetTileObject(transform.position,out var result)) return;
                 result.GetComponent<IOnRock>().UnLockOfRock();
 
                 _rockFactory.DeadCall();
+                ScoreManager.I.AddScore();
                 StartCoroutine("Destroy");
             }
         }        
