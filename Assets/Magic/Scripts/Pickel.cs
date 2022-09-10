@@ -14,6 +14,14 @@ public class Pickel : MonoBehaviour,IOutofDead
         // this.UpdateAsObservable()
         // .Subscribe(_ => Move())
         // .AddTo(this);
+
+        StartCoroutine("TimeOut");
+    }
+
+    IEnumerator TimeOut(){
+        //3秒停止
+        yield return new WaitForSeconds(3);
+        Dead();
     }
 
     // void Move(){
@@ -39,6 +47,7 @@ public class Pickel : MonoBehaviour,IOutofDead
     }
 
     public void Dead(){
-        Destroy(this);
+        Debug.Log("でた");
+        Destroy(this.gameObject);
     }
 }

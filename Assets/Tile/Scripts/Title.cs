@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace u1w.Tiles{
-    public class Title : MonoBehaviour,ITileForPlayer,ITileForManager
+    public class Title : MonoBehaviour,ITileForPlayer,ITileForManager,IOnRock,ILocked
     {
         #region プロパティ
         //色
@@ -37,7 +37,7 @@ namespace u1w.Tiles{
             next = new NextPosition();
 
             GameManager.I.Ready2
-            .Subscribe(_ => GetRay())
+            .Subscribe(_ => GetNextTile())
             .AddTo(this);
 
             _tileManager = TileManager.I;
@@ -55,7 +55,7 @@ namespace u1w.Tiles{
             else if(rand == 2) _color.Value = Color.green;
         }
 
-        void GetRay(){
+        void GetNextTile(){
             Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,1));
             Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(1,0,0));
             Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,-1));
@@ -89,6 +89,71 @@ namespace u1w.Tiles{
 
         public IGetNext GetNextPosition(){
             return next;
+        }
+
+        public void LockOfRock(){
+            Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,1));
+            Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(1,0,0));
+            Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,-1));
+            Ray westRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(-1,0,0));
+            RaycastHit hit;
+
+            if (Physics.Raycast(northRay,out hit)){
+                if(!hit.collider.gameObject.TryGetComponent<ILocked>(out var obj))
+                    obj.PleaseLock(Direction.north);
+            }
+
+
+            if (Physics.Raycast(eastRay,out hit)){
+                if(hit.collider.gameObject.TryGetComponent<ILocked>(out var obj))
+                obj.PleaseLock(Direction.east);
+            }
+
+            if (Physics.Raycast(southRay,out hit)){
+                if(hit.collider.gameObject.TryGetComponent<ILocked>(out var obj))
+                obj.PleaseLock(Direction.south);
+            }
+
+            if (Physics.Raycast(westRay,out hit)){
+                if(hit.collider.gameObject.TryGetComponent<ILocked>(out var obj))
+                obj.PleaseLock(Direction.west);
+            }
+        }
+
+        public void UnLockOfRock(){
+            Ray northRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,1));
+            Ray eastRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(1,0,0));
+            Ray southRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(0,0,-1));
+            Ray westRay = new Ray (transform.position + new Vector3 (0, 0, 0f), new Vector3(-1,0,0));
+            RaycastHit hit;
+
+            if (Physics.Raycast(northRay,out hit))  hit.collider.gameObject.GetComponent<ILocked>().PleaseUnLock(Direction.north);
+
+            if (Physics.Raycast(eastRay,out hit))   hit.collider.gameObject.GetComponent<ILocked>().PleaseUnLock(Direction.east);
+
+            if (Physics.Raycast(southRay,out hit))  hit.collider.gameObject.GetComponent<ILocked>().PleaseUnLock(Direction.south);
+
+            if (Physics.Raycast(westRay,out hit))   hit.collider.gameObject.GetComponent<ILocked>().PleaseUnLock(Direction.west);
+        }
+
+        public void PleaseLock(Direction from){
+            Direction fromMe;
+            if(from == Direction.north) fromMe = Direction.south; 
+            else if(from == Direction.east) fromMe = Direction.west; 
+            else if(from == Direction.south) fromMe = Direction.north;
+            else  fromMe = Direction.east;
+
+            next.SetEmpty(fromMe);
+        }
+
+        public void PleaseUnLock(Direction from){
+            Direction fromMe;
+            if(from == Direction.north) fromMe = Direction.south; 
+            else if(from == Direction.east) fromMe = Direction.west; 
+            else if(from == Direction.south) fromMe = Direction.north;
+            else  fromMe = Direction.east;
+
+            next.SetPos(fromMe,this.transform.position);
         }
     }
     public class NextPosition:IGetNext{

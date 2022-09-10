@@ -26,7 +26,14 @@ public interface IGetNext
     public Vector3 GetPos(Direction direction);
 } 
 
-public interface ISetNext
+public interface IOnRock
 {
-    public void SetEmpty();
+    public void LockOfRock();
+    public void UnLockOfRock();
+} 
+
+public interface ILocked
+{
+    public void PleaseLock(Direction from);
+    public void PleaseUnLock(Direction from);
 } 

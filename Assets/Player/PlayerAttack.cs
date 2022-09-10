@@ -34,8 +34,10 @@ namespace u1w.player
             Debug.DrawRay(Ray.origin, Ray.direction * 10, Color.blue,10f);
             
             if (Physics.Raycast(Ray,out hit)){
-                hit.collider.gameObject.TryGetComponent<IAttack>(out IAttack attack);
-                attack.Damaged(new Magic(1,1,1));
+                if(hit.collider.gameObject.TryGetComponent<IAttack>(out IAttack attack)){
+                    attack.Damaged(new Magic(1,1,1));
+                }
+                
             }
         }
 
