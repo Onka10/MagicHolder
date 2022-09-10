@@ -17,6 +17,9 @@ namespace u1w.Rock
         void Start()
         {
             _rockFactory = RockFactory.I;
+            //チェックと入手を兼ねている
+            if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+            result.GetComponent<IOnRock>().LockOfRock();
         }
 
         public void Damaged(Magic magic){
@@ -28,6 +31,11 @@ namespace u1w.Rock
                 GameObject effect = Instantiate(DestroyEffect, Vector3.zero, Quaternion.identity);
                 effect.transform.SetParent(this.gameObject.transform);
                 effect.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+                //マスのLockを解除
+                //チェックと入手を兼ねている
+                if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+                result.GetComponent<IOnRock>().UnLockOfRock();
 
                 _rockFactory.DeadCall();
                 StartCoroutine("Destroy");

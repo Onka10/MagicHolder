@@ -9,7 +9,7 @@ public class DestroyColider : MonoBehaviour
     void Start()
     {
         // Playerと衝突したら、Playerは死亡する
-        this.OnCollisionEnterAsObservable()
+        this.OnCollisionStayAsObservable()
         .Subscribe(hit => DestroyObject(hit))
         .AddTo(this);
     }
