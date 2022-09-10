@@ -30,7 +30,7 @@ namespace u1w.Rock
                 effect.transform.localPosition = new Vector3(0f, 0f, 0f);
 
                 _rockFactory.DeadCall();
-                /*StartCoroutine("Destroy");*/
+                StartCoroutine("Destroy");
             }
         }        
 
@@ -41,9 +41,5 @@ namespace u1w.Rock
         }
       
     }
- 
-
-
-    
 }
 

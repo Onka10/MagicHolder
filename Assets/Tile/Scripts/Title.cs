@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace u1w.Tile{
+namespace u1w.Tiles{
     public class Title : MonoBehaviour,ITileForPlayer,ITileForManager
     {
         #region プロパティ
@@ -17,8 +17,7 @@ namespace u1w.Tile{
         public Vector3 Pos => _pos;
         [SerializeField] private Vector3 _pos;
 
-        //移動先
-        [SerializeField] private Vector3[] Dire = new Vector3[4];
+        private NextPosition next;
 
         [SerializeField] float cubeHalf=0.5f;
 
@@ -35,6 +34,7 @@ namespace u1w.Tile{
             _pos = this.gameObject.transform.position;
             SetColor();
             if(IsFirstTile) _color.Value = Color.black;
+            next = new NextPosition();
 
             GameManager.I.Ready2
             .Subscribe(_ => GetRay())
@@ -65,30 +65,17 @@ namespace u1w.Tile{
             //デバッグ
             // Debug.DrawRay(northRay.origin, northRay.direction * 10, Color.red,10f);
 
-            if (Physics.Raycast(northRay,out hit)){
-                //なんか上手くいかない if (TryGetComponent<ITileForManager>(out ITileForManager tile))
-                // Debug.Log ("Rayが当たった"+ hit.collider.gameObject.name);
-                Dire[0] = hit.collider.gameObject.transform.position;
-            }
+            if (Physics.Raycast(northRay,out hit))  next.SetPos(Direction.north, hit.collider.gameObject.transform.position);
+            else next.SetEmpty(Direction.north);
 
-            if (Physics.Raycast(eastRay,out hit)){
-                Dire[1] = hit.collider.gameObject.transform.position;
-            }
+            if (Physics.Raycast(eastRay,out hit))   next.SetPos(Direction.east, hit.collider.gameObject.transform.position);
+            else next.SetEmpty(Direction.east);
 
-            if (Physics.Raycast(southRay,out hit)){
-                Dire[2] = hit.collider.gameObject.transform.position;
-            }
+            if (Physics.Raycast(southRay,out hit))  next.SetPos(Direction.south, hit.collider.gameObject.transform.position);
+            else next.SetEmpty(Direction.south);
 
-            if (Physics.Raycast(westRay,out hit)){
-                Dire[3] = hit.collider.gameObject.transform.position;
-            }
-        }
-
-        public Vector3 GetNextPos(Direction dir){
-            Vector3 pos = new Vector3();
-
-            pos = Dire[(int)dir];
-            return pos;
+            if (Physics.Raycast(westRay,out hit))   next.SetPos(Direction.west, hit.collider.gameObject.transform.position);
+            else next.SetEmpty(Direction.west);
         }
 
         public void DeleteColor(){
@@ -99,6 +86,34 @@ namespace u1w.Tile{
             XID = x;
             YID = y;
         }
+
+        public IGetNext GetNextPosition(){
+            return next;
+        }
     }
+    public class NextPosition:IGetNext{
+        private Vector3[] Dire = new Vector3[4];
+        
+        public NextPosition(){}
+        
+        public void SetPos(Direction dir, Vector3 pos){
+            Dire[(int)dir] = pos;
+        }
+
+        public void SetEmpty(Direction dir){
+            Dire[(int)dir] = new Vector3(99f,99f,99f);
+        }
+
+        public bool CanGetPos(Direction dir){
+            if(Dire[(int)dir] == new Vector3(99f,99f,99f)) return false;
+            else    return true;
+        }
+
+        public Vector3 GetPos(Direction dir){
+            return Dire[(int)dir];
+        }
+    }
+
+
 }
 

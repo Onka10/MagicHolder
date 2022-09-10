@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UniRx;
 using System;
 
-namespace u1w.Tile
+namespace u1w.Tiles
 {
         public class TileManager : Singleton<TileManager>
     {
@@ -20,9 +20,6 @@ namespace u1w.Tile
 
         PhaseManager _phaseManager;
 
-
-        [SerializeField] int row = 10;
-        [SerializeField] int column = 20;
         [SerializeField] float xOffset = 1.5f;
         [SerializeField] float zOffset = 1.5f;
 
@@ -42,8 +39,8 @@ namespace u1w.Tile
         /// </Summary>
         void CreateBlockObject(){
 
-            for (int j = 0; j < row; j++){
-                for (int x = 0; x < column; x++){
+            for (int j = 0; j < StageSetting.X; j++){
+                for (int x = 0; x < StageSetting.Y; x++){
                     //0,0は生成済みだから無し
                     if(x==0 && j==0)    continue;
 

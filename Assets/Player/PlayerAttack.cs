@@ -10,6 +10,8 @@ namespace u1w.player
     {
         [SerializeField] PlayerMove _playerMove;
         PhaseManager _phaseManager;
+
+        [SerializeField] GameObject Axe;
         
         void Start(){
             _phaseManager = PhaseManager.I;
@@ -38,7 +40,7 @@ namespace u1w.player
         }
 
         void PlayView(){
-
+            Instantiate(Axe, this.transform.position, Quaternion.identity);
         }
 
     }

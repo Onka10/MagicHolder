@@ -37,7 +37,7 @@ namespace u1w.Rock
             rock.transform.SetParent(this.gameObject.transform);
             //FIXMEハードコード5,5あと、00の時のバグ潰し出来てない
             
-            rock.transform.localPosition = new Vector3((float)Random.Range(0,5), 1f, (float)Random.Range(0,5));
+            rock.transform.localPosition = new Vector3((float)Random.Range(0,StageSetting.X), 1f, (float)Random.Range(0,StageSetting.Y));
             rockCount++;
         }
 

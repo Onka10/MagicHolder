@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-namespace u1w.Tile
+namespace u1w.Tiles
 {
     public class TileView : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace u1w.Tile
         public Material wind;
         public Material none;
 
-        [SerializeField] Tile.Title _tile;
+        [SerializeField] Tiles.Title _tile;
 
         [SerializeField] MeshRenderer _mesh;
         void Start(){

@@ -38,16 +38,10 @@ namespace u1w.player
 
         public void GetTile(){
             //移動後に今の位置を取得
-            Ray Ray = new Ray (transform.position + new Vector3 (0, 0, 0), Vector3.down);
-            RaycastHit hit;
 
-            //デバッグ
-            Debug.DrawRay(Ray.origin, Ray.direction * 10, Color.red,10f);
-
-            if (Physics.Raycast(Ray,out hit)){
-                //タイル入手
-                _nowTile = hit.collider.gameObject;
-            }
+            //チェックと入手を兼ねている
+            if(!new GetTile().RayCast(transform.position).Result(out var result)) return;
+            _nowTile = result;
 
             //色入手
             var nowColor = _nowTile.GetComponent<ITileForPlayer>().Color;
@@ -73,7 +67,6 @@ namespace u1w.player
         void GameOver(){
             _uniTaskCompletionSource.TrySetResult();
             IsGameOver=true;
-
         }
     }
 }
