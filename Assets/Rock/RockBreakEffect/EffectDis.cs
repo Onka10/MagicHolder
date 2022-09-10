@@ -19,7 +19,7 @@ public class EffectDis : MonoBehaviour
 	void OnParticleSystemStopped()
 	{
 		Destroy(Effect);
-
+		
 	}
 
 }
