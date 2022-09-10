@@ -40,7 +40,9 @@ namespace u1w.player
         }
 
         void PlayView(){
-            Instantiate(Axe, this.transform.position, Quaternion.identity);
+            float y= Dictionaries.AttackDirDictionary[_playerMove.NowDirection].y;
+            GameObject axe = Instantiate(Axe, this.transform.position, Quaternion.Euler(0,y,0));
+            axe.transform.SetParent(this.gameObject.transform);
         }
 
     }
