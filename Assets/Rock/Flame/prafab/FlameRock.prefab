@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1517805753805513271}
   - component: {fileID: 203156674060681716}
   - component: {fileID: 203156674060681717}
+  - component: {fileID: 1122444796349185494}
   m_Layer: 0
   m_Name: FlameRock
   m_TagString: Untagged
@@ -109,3 +110,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 1193233373954691467, guid: a5cd45750e193ba4c8470af3a8c64b70, type: 3}
+--- !u!95 &1122444796349185494
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013494886159123426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76687316571e99d4e872ba49b5ac98c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
