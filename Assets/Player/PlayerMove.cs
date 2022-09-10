@@ -45,10 +45,13 @@ namespace u1w.player
         }
 
         void Check(Direction d){
-            //本来は壁かどうかチェックして実行
-            this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetNextPos(d);
+            //ダメか確認
+            if(!_playerCore.NowTile.GetComponent<ITileForPlayer>().GetNextPosition().CanGetPos(d))  return;
+  
+
+            this.gameObject.transform.position = _playerCore.NowTile.GetComponent<ITileForPlayer>().GetNextPosition().GetPos(d);
             //オフセット
-            this.gameObject.transform.position += new Vector3(0,1,0);
+            this.gameObject.transform.position += new Vector3(0,.8f,0);
 
             //方向を変える
             this.gameObject.transform.eulerAngles = Dictionaries.OwnDirDictionary[d];

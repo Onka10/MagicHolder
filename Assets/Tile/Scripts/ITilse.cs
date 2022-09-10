@@ -7,9 +7,8 @@ public interface ITileForPlayer
 {
     public Color Color{get;}
 
-    public Vector3 GetNextPos(Direction dir);
-
     public void DeleteColor();
+    public IGetNext GetNextPosition();
 }
 
 /// <summary>
@@ -19,4 +18,15 @@ public interface ITileForManager
 {
     //自分のガチ座標
     public Vector3 Pos{get;}
+} 
+
+public interface IGetNext
+{
+    public bool CanGetPos(Direction direction);
+    public Vector3 GetPos(Direction direction);
+} 
+
+public interface ISetNext
+{
+    public void SetEmpty();
 } 

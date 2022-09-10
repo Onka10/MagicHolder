@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     private Subject<Unit> _ready2 = new Subject<Unit>();
 
 
-    [SerializeField] u1w.Tile.TileManager _tileManager;
+    [SerializeField] u1w.Tiles.TileManager _tileManager;
     [SerializeField] u1w.player.PlayerCore _playerCore;
 
 
