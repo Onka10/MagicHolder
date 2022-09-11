@@ -17,8 +17,10 @@ namespace u1w.Rock
 {
     public class Rock : MonoBehaviour,IDamaged
     {
-        public int HP=>hp;
-        private int hp=1;
+        public static readonly int MaxHP=7;
+        public IReadOnlyReactiveProperty<int> HP => hp;
+        private readonly ReactiveProperty<int> hp = new ReactiveProperty<int>(MaxHP);
+
         RockFactory _rockFactory;
         [SerializeField] RockView view;
         private MagicType magicType;
@@ -39,11 +41,11 @@ namespace u1w.Rock
             // //ダメージ計算
             magic.GetDamage(out int atk);
             float damage = (float)atk * ThreeWay.CalcDamageRate(magic.GetMagicType(),magicType);
-            hp -= (int)damage;
+            hp.Value -= (int)damage;
 
             Debug.Log("のこり"+hp);
 
-            if(hp <= 0){
+            if(hp.Value <= 0){
                 //マスのLockを解除
                 //チェックと入手を兼ねている
                 if(!new GetTile().GetTileObject(transform.position,out var result)) return;
