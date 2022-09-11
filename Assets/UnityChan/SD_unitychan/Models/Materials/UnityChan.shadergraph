@@ -571,7 +571,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "1f9b2da77af14e6aac1ed19ae1166cfa",
     "m_Id": 0,
-    "m_DisplayName": "Texture2D",
+    "m_DisplayName": "SubTexture2D",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
