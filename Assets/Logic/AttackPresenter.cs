@@ -26,6 +26,7 @@ namespace u1w
 
             StartCoroutine ("waitAnimation");
             _playerCore.Damage(damage);
+            SoundManager.I.PlayRockAttack();
         }
 
         private IEnumerator waitAnimation() {

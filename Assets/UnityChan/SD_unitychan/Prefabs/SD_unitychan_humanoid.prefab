@@ -50,9 +50,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 787cbe8c6e6ebf74e856c2ccb3eb1923, type: 2}
-  - {fileID: 2100000, guid: 33617e2203e55fa46801e063486b59f3, type: 2}
-  - {fileID: 2100000, guid: a172534e4207dec438dea0e660e996a7, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,8 +150,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 787cbe8c6e6ebf74e856c2ccb3eb1923, type: 2}
-  - {fileID: 2100000, guid: a172534e4207dec438dea0e660e996a7, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,8 +237,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 787cbe8c6e6ebf74e856c2ccb3eb1923, type: 2}
-  - {fileID: 2100000, guid: a172534e4207dec438dea0e660e996a7, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,7 +326,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09608bb10cbd4714a94445805ab7a652, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -411,8 +411,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33617e2203e55fa46801e063486b59f3, type: 2}
-  - {fileID: 2100000, guid: b87a4da61900d68429a41bed3ea42d16, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3612,7 +3612,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b87a4da61900d68429a41bed3ea42d16, type: 2}
-  - {fileID: 2100000, guid: 09608bb10cbd4714a94445805ab7a652, type: 2}
+  - {fileID: 2100000, guid: b87a4da61900d68429a41bed3ea42d16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5328,6 +5328,8 @@ GameObject:
   m_Component:
   - component: {fileID: 400264}
   - component: {fileID: 9500000}
+  - component: {fileID: 583691542}
+  - component: {fileID: 7740602677652770555}
   m_Layer: 0
   m_Name: SD_unitychan_humanoid
   m_TagString: Untagged
@@ -5362,7 +5364,7 @@ Animator:
   m_GameObject: {fileID: 100264}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: dd6ec75974b69a3409711f8110698bbb, type: 3}
-  m_Controller: {fileID: 9100000, guid: a0702f03fac0faa4d983e423203b2fb4, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -5371,6 +5373,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &583691542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481f6ddd1ab9b6b42a13e97d27cb35e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anime1: {fileID: 7400000, guid: f320efa63ce12874a9ad50add869c0b5, type: 3}
+  anime2: {fileID: 7400002, guid: f320efa63ce12874a9ad50add869c0b5, type: 3}
+  weight: 1
+--- !u!114 &7740602677652770555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1748ae7cd68bc478c1646a9d4c0e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnityChanParts:
+  - {fileID: 100000}
+  materials:
+  - {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+  - {fileID: 2100000, guid: b87a4da61900d68429a41bed3ea42d16, type: 2}
+  - {fileID: 2100000, guid: ea3dc81dfa69a594c947c23180832f1c, type: 2}
 --- !u!1 &100266
 GameObject:
   m_ObjectHideFlags: 0

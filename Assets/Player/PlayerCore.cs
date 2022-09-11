@@ -12,22 +12,21 @@ namespace u1w.player
         public Magic HaveMagic => _magic;
         private Magic _magic = new Magic();
 
-        public IObservable<Unit> UIReLoad => _reload;
+        public IObservable<Unit> OnStyleChange => _reload;
         private readonly Subject<Unit> _reload = new Subject<Unit>();
+
+        public IObservable<Unit> OnGetColor => _getColor;
+        private readonly Subject<Unit> _getColor = new Subject<Unit>();
 
         public static readonly int MaxHP = 100;
         public IReadOnlyReactiveProperty<int> HP => _hp;
         private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(MaxHP);
-
-        public UniTask GameOverAsync => _uniTaskCompletionSource.Task;
-        private readonly UniTaskCompletionSource _uniTaskCompletionSource = new UniTaskCompletionSource();
-
         public bool IsGameOver=false;
 
 
         //最初は0,0のTileを入れておくこと！
         public GameObject NowTile => _nowTile;
-        [SerializeField]private GameObject _nowTile;
+        [SerializeField] private GameObject _nowTile;
         [SerializeField] InputObserver _input;
         [SerializeField] StepCounter _step;
 
@@ -38,14 +37,15 @@ namespace u1w.player
             .AddTo(this);
 
             _input.OnCtrl
-            .Where(_ => _step.Step.Value ==0)
+            .Where(_ => _step.Step.Value ==StepCounter.MaxStep)
             .Subscribe(_ =>{
                 _magic.StyleChange();
                 _reload.OnNext(Unit.Default);
+                SoundManager.I.PlayStyle();
             })
             .AddTo(this);
 
-            _magic.nowMagicType = MagicType.Flame;
+            _magic.nowStyle = MagicType.Flame;
         }
 
 
@@ -71,7 +71,7 @@ namespace u1w.player
 
         void GotColor(Color color){
             _magic.Add(color);
-            _reload.OnNext(Unit.Default);
+            _getColor.OnNext(Unit.Default);
         }
 
         public void Damage(int atk){
@@ -79,7 +79,6 @@ namespace u1w.player
         }
 
         void GameOver(){
-            _uniTaskCompletionSource.TrySetResult();
             IsGameOver=true;
         }
     }

@@ -14,7 +14,7 @@ namespace u1w.UI
         void Start()
         {
             _step.Step
-            .Subscribe(s => text.text =(_step.MaxStep - s).ToString())
+            .Subscribe(s => text.text =_step.Step.ToString())
             .AddTo(this);
         }
     }

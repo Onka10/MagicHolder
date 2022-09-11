@@ -9,11 +9,10 @@ namespace u1w.player
 {
     public class StepCounter : MonoBehaviour
     {
-        public int MaxStep => maxStep;
-        [SerializeField] int maxStep=7;   
+        public static readonly int MaxStep = 7;  
 
         public IReadOnlyReactiveProperty<int> Step => _step;
-        private readonly ReactiveProperty<int> _step = new ReactiveProperty<int>(0);
+        private readonly ReactiveProperty<int> _step = new ReactiveProperty<int>(MaxStep);
 
         public bool TurnEnd => turnEnd;
         private bool turnEnd=false;
@@ -29,14 +28,13 @@ namespace u1w.player
         }
 
         public void Count(){
-            _step.Value++;
-            // Debug.Log(_step);
-            if(_step.Value == MaxStep)    turnEnd = true;
+            _step.Value--;
+            if(_step.Value <= 0)    turnEnd = true;
         }
 
         void ResetStep(){
             turnEnd = false;
-            _step.Value = 0;
+            _step.Value = MaxStep;
         }
 
     }

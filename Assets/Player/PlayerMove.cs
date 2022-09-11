@@ -23,21 +23,25 @@ namespace u1w.player
 
             _input.OnW
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
+            .Where(_ => _stepCounter.Step.Value > 0)
             .Subscribe(_ => Check(Direction.north))
             .AddTo(this);
 
             _input.OnA
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
+            .Where(_ => _stepCounter.Step.Value > 0)
             .Subscribe(_ => Check(Direction.west))
             .AddTo(this);
 
             _input.OnS
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
+            .Where(_ => _stepCounter.Step.Value > 0)
             .Subscribe(_ => Check(Direction.south))
             .AddTo(this);
 
             _input.OnD
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
+            .Where(_ => _stepCounter.Step.Value > 0)
             .Subscribe(_ => Check(Direction.east))
             .AddTo(this);
 
@@ -59,6 +63,7 @@ namespace u1w.player
 
             _stepCounter.Count();
             _playerCore.GetTile();
+            SoundManager.I.PlayerMove();
         }
 
     }

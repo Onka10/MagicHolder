@@ -15,15 +15,15 @@ using UniRx;
         {
             _playerCore = u1w.player.PlayerCore.I;
 
-            _playerCore.UIReLoad
+            _playerCore.OnStyleChange
             .Subscribe(_ => Refresh())
             .AddTo(this);
         }
 
         void Refresh(){
-            text.text = _playerCore.HaveMagic.nowMagicType.ToString();
+            text.text = _playerCore.HaveMagic.nowStyle.ToString();
 
-            var nowMagicType = _playerCore.HaveMagic.nowMagicType;
+            var nowMagicType = _playerCore.HaveMagic.nowStyle;
 
             if(nowMagicType == MagicType.Flame) image.color = Color.red;
             else if(nowMagicType == MagicType.Water) image.color = Color.blue;
