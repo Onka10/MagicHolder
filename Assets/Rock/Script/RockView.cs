@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using Cysharp.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace u1w.Rock
 {
@@ -15,10 +16,18 @@ namespace u1w.Rock
 
         [SerializeField] Material[] typeMaterials = new Material[3];
 
+        [SerializeField] Rock rock;
+        [SerializeField] Slider slider;
+
         void Start(){
             PhaseManager.I.State
             .Where(s => s==PhaseState.EnemyAttack)
             .Subscribe(_ => PlayAttack())
+            .AddTo(this);
+
+            slider.maxValue = (float)Rock.MaxHP;
+            rock.HP
+            .Subscribe(h => slider.value = h)
             .AddTo(this);
         }
 
