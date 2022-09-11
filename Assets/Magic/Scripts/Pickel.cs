@@ -47,7 +47,6 @@ public class Pickel : MonoBehaviour,IOutofDead
     }
 
     public void Dead(){
-        Debug.Log("でた");
         Destroy(this.gameObject);
     }
 }

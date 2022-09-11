@@ -9,8 +9,8 @@ namespace u1w.player
 {
     public class PlayerCore : Singleton<PlayerCore>
     {
-        public MagicHolder MagicHolder => _magicHolder;
-        private MagicHolder _magicHolder = new MagicHolder();
+        public Magic HaveMagic => _magic;
+        private Magic _magic = new Magic();
 
         public IObservable<Unit> UIReLoad => _reload;
         private readonly Subject<Unit> _reload = new Subject<Unit>();
@@ -28,14 +28,30 @@ namespace u1w.player
         //最初は0,0のTileを入れておくこと！
         public GameObject NowTile => _nowTile;
         [SerializeField]private GameObject _nowTile;
+        [SerializeField] InputObserver _input;
+        [SerializeField] StepCounter _step;
 
         void Start(){
             _hp
             .Where(hp => hp <= 0)
             .Subscribe(_ =>GameOver())
             .AddTo(this);
+
+            _input.OnCtrl
+            .Where(_ => _step.Step.Value ==0)
+            .Subscribe(_ =>{
+                _magic.StyleChange();
+                _reload.OnNext(Unit.Default);
+            })
+            .AddTo(this);
+
+            _magic.nowMagicType = MagicType.Flame;
         }
 
+
+        /// <summary>
+        /// 真下のタイルを入手
+        /// </summary>
         public void GetTile(){
             //移動後に今の位置を取得
 
@@ -52,11 +68,9 @@ namespace u1w.player
         }
 
 
-        /// <summary>
-        /// 色をチャージさせる
-        /// </summary>
+
         void GotColor(Color color){
-            _magicHolder.Add(color);
+            _magic.Add(color);
             _reload.OnNext(Unit.Default);
         }
 
