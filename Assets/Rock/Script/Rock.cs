@@ -23,7 +23,7 @@ namespace u1w.Rock
             _rockFactory = RockFactory.I;
             //チェックと入手を兼ねている
             if(!new GetTile().GetTileObject(transform.position,out var result)) return;
-            result.GetComponent<IOnRock>().LockOfRock();
+            result.GetComponent<ILock>().LockOfRock();
         }
 
         public void Damaged(IGetMagic magic){
@@ -31,8 +31,9 @@ namespace u1w.Rock
             magic.GetDamage(out int atk);
             float damage = (float)atk * ThreeWay.CalcDamageRate(magic.GetMagicType(),magicType);
             hp -= (int)damage;
+            SoundManager.I.PlayPlayerAttack();
 
-            Debug.Log("のこり"+hp);
+            // Debug.Log("のこり"+hp);
 
             if(hp <= 0){
                 //エフェクト再生
@@ -41,7 +42,7 @@ namespace u1w.Rock
                 //マスのLockを解除
                 //チェックと入手を兼ねている
                 if(!new GetTile().GetTileObject(transform.position,out var result)) return;
-                result.GetComponent<IOnRock>().UnLockOfRock();
+                result.GetComponent<ILock>().UnLockOfRock();
 
                 _rockFactory.DeadCall();
                 ScoreManager.I.AddScore();

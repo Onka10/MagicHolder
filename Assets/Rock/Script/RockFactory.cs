@@ -34,8 +34,16 @@ namespace u1w.Rock
             rock.transform.SetParent(this.gameObject.transform);
             //FIXMEハードコード5,5あと、00の時のバグ潰し出来てない
             
-            float x = (float)Random.Range(0,StageSetting.X);
-            float z = (float)Random.Range(0,StageSetting.Y);
+            float x;
+            float z;
+
+            while(true){
+                x = (float)Random.Range(0,StageSetting.X);
+                z = (float)Random.Range(0,StageSetting.Y);
+                if(x != 0 && z != 0)    break;
+            }
+            
+
             effect.transform.localPosition = new Vector3(x, 1f, z);
             rock.transform.localPosition = new Vector3(x, 1f, z);
             
