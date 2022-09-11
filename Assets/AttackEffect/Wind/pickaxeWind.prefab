@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2188428017579436817, guid: 42a35d247521407428c4efb92e411744, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2188428017579436818, guid: 42a35d247521407428c4efb92e411744, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
