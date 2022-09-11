@@ -13,7 +13,7 @@ namespace u1w.player
         [SerializeField] Text textB;
         void Start()
         {
-            PlayerCore.I.UIReLoad
+            PlayerCore.I.OnGetColor
             .Subscribe(_ => Refresh())
             .AddTo(this);
         }

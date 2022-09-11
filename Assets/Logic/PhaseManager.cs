@@ -33,6 +33,7 @@ namespace u1w
                 _state.Value = PhaseState.PlayerTurn;
                 Debug.Log("プレイヤー移動開始");
                 await UniTask.WaitUntil(() => _stepCounter.TurnEnd);
+                await UniTask.Delay(2000);
 
                 //魔法発動
                 _state.Value = PhaseState.PlayerAttack;
@@ -54,6 +55,7 @@ namespace u1w
             }
 
             Debug.Log("ゲームオーバー");
+            SoundManager.I.StopBGM();
 
         }
 

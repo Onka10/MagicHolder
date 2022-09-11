@@ -25,6 +25,7 @@ namespace u1w.player
         void Attack(){
             //見た目
             PlayView();
+            SoundManager.I.PlayPlayerAttack();
 
             Ray Ray = new Ray (this.transform.position + new Vector3(0.0f, 0.0f, 0.0f), Dictionaries.AttackDirDictionary[_playerMove.NowDirection]);
             RaycastHit hit;

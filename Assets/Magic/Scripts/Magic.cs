@@ -6,7 +6,7 @@ public interface IGetMagic{
 
 public class Magic:IGetMagic
 {
-    public MagicType nowMagicType;
+    public MagicType nowStyle;
 
     public int Flame =>flame;
     private int flame;
@@ -40,28 +40,28 @@ public class Magic:IGetMagic
 
 
     public void StyleChange(){
-        if(nowMagicType == MagicType.Flame) nowMagicType = MagicType.Water;
-        else if(nowMagicType == MagicType.Water) nowMagicType = MagicType.Wind;
-        else if(nowMagicType == MagicType.Wind) nowMagicType = MagicType.Flame;
+        if(nowStyle == MagicType.Flame) nowStyle = MagicType.Water;
+        else if(nowStyle == MagicType.Water) nowStyle = MagicType.Wind;
+        else if(nowStyle == MagicType.Wind) nowStyle = MagicType.Flame;
     }
 
     //外部出力
     public void GetDamage(out int damage){
         DelleteMagic();
-        if(nowMagicType == MagicType.Flame) damage = Flame;
-        if(nowMagicType == MagicType.Water) damage = Water;
+        if(nowStyle == MagicType.Flame) damage = Flame;
+        if(nowStyle == MagicType.Water) damage = Water;
         else damage = Wind;
 
         DelleteMagic();
     }
     void DelleteMagic(){
-        if(nowMagicType == MagicType.Flame) flame = 0;
-        else if(nowMagicType == MagicType.Water) water=0;
-        else if(nowMagicType == MagicType.Wind) wind = 0;
+        if(nowStyle == MagicType.Flame) flame = 0;
+        else if(nowStyle == MagicType.Water) water=0;
+        else if(nowStyle == MagicType.Wind) wind = 0;
     }
 
     public MagicType GetMagicType(){
-        return nowMagicType;
+        return nowStyle;
     }
 }
 
