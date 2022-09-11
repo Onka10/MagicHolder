@@ -60,14 +60,8 @@ namespace u1w.player
             _nowTile = result;
 
             //色入手
-            var nowColor = _nowTile.GetComponent<ITileForPlayer>().Color;
-            GotColor(nowColor);
-
-            //回収済み
-            _nowTile.GetComponent<ITileForPlayer>().DeleteColor();
+            GotColor(_nowTile.GetComponent<IGetTileData>().GetColor());
         }
-
-
 
         void GotColor(Color color){
             _magic.Add(color);

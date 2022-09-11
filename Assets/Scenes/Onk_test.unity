@@ -875,8 +875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMove: {fileID: 520805667}
-  Axe: {fileID: 9041847051657243999, guid: 323e9da54a711594fa43e75dab161915, type: 3}
-  _playerCore: {fileID: 0}
+  Axe: {fileID: 5349301125007996616, guid: a0d83712a9495ec4eae461e0865ce381, type: 3}
+  _playerCore: {fileID: 520805669}
 --- !u!1 &531967099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f4aa2e88bee73049968a9131866a72c, type: 2}
+  - {fileID: 2100000, guid: 1a43928f48a88f940b8964d5b32c7847, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2741,6 +2741,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b81b6e6f4aadf5c409e722af208d74c8, type: 3}
   - {fileID: 8300000, guid: d4c5daa700e78c9499db3c9c91f81316, type: 3}
   - {fileID: 8300000, guid: b0f8852c0343871418f6a73dbf7feeb5, type: 3}
+  - {fileID: 8300000, guid: 316938f83aa6d2345af2ff353c2bc095, type: 3}
+  BGMClips:
+  - {fileID: 8300000, guid: 46e220e9d05314b4aaf3edcb7c8e8049, type: 3}
+  - {fileID: 8300000, guid: e60e0cdc3f562604fbf249944a93206b, type: 3}
 --- !u!4 &1622757531
 Transform:
   m_ObjectHideFlags: 0
@@ -3003,9 +3007,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 46e220e9d05314b4aaf3edcb7c8e8049, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e60e0cdc3f562604fbf249944a93206b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
