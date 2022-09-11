@@ -1237,11 +1237,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMove: {fileID: 520805667}
-  Axe: {fileID: 5715679608646119816, guid: bbd36685e6d34f24dbec0fb9607c77f4, type: 3}
+  Axe: {fileID: 5349301125007996616, guid: a0d83712a9495ec4eae461e0865ce381, type: 3}
   Axes:
-  - {fileID: 5685382363882577832, guid: a5350f325190ff04e9da83fca008ea96, type: 3}
-  - {fileID: 794220482876455553, guid: 062237a4eb052bd428fc545c32991866, type: 3}
-  - {fileID: 6085208593201035161, guid: 8d47ba1a36d2c214081136ec3bb13bd9, type: 3}
+  - {fileID: 5349301125007996616, guid: a0d83712a9495ec4eae461e0865ce381, type: 3}
+  - {fileID: 5349301125007996616, guid: a0d83712a9495ec4eae461e0865ce381, type: 3}
+  - {fileID: 5349301125007996616, guid: a0d83712a9495ec4eae461e0865ce381, type: 3}
   _playerCore: {fileID: 520805669}
 --- !u!1 &531967099
 GameObject:
