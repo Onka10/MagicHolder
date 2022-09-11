@@ -4974,6 +4974,7 @@ GameObject:
   - component: {fileID: 4822691470865215309}
   - component: {fileID: 4822691470865215299}
   - component: {fileID: 4822691470865215298}
+  - component: {fileID: 5741974904844732049}
   m_Layer: 0
   m_Name: RockAppEffect (1)
   m_TagString: Untagged
@@ -9861,6 +9862,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5741974904844732049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822691470865215308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d41e6bc4e9de5349b244d1aa1498a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effect: {fileID: 6716642654118840321}
 --- !u!1 &6716642654118840321
 GameObject:
   m_ObjectHideFlags: 0
