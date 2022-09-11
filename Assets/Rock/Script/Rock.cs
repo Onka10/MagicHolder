@@ -4,12 +4,21 @@ using UnityEngine;
 using UniRx;
 using Cysharp.Threading.Tasks;
 
+
+/// <summary>
+/// 攻撃可能
+/// </summary>
+public interface IDamaged
+{
+    public void Damaged(IGetMagic magic);
+}
+
 namespace u1w.Rock
 {
-    public class Rock : MonoBehaviour
+    public class Rock : MonoBehaviour,IDamaged
     {
         public int HP=>hp;
-        private int hp=10;
+        private int hp=1;
         RockFactory _rockFactory;
         [SerializeField] RockView view;
         private MagicType magicType;
@@ -31,14 +40,10 @@ namespace u1w.Rock
             magic.GetDamage(out int atk);
             float damage = (float)atk * ThreeWay.CalcDamageRate(magic.GetMagicType(),magicType);
             hp -= (int)damage;
-            SoundManager.I.PlayPlayerAttack();
 
-            // Debug.Log("のこり"+hp);
+            Debug.Log("のこり"+hp);
 
             if(hp <= 0){
-                //エフェクト再生
-                view.PlayDestroy();
-
                 //マスのLockを解除
                 //チェックと入手を兼ねている
                 if(!new GetTile().GetTileObject(transform.position,out var result)) return;
@@ -52,7 +57,12 @@ namespace u1w.Rock
 
         IEnumerator Destroy()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
+            //エフェクト再生 
+            CameraShake.I.Shake(0.25f, 0.5f);
+            view.PlayDestroy();
+            SoundManager.I.PlayPlayerAttack();
+            
             Destroy(this.gameObject);
         }
       

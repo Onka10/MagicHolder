@@ -12,6 +12,7 @@ namespace u1w.player
         PhaseManager _phaseManager;
 
         [SerializeField] GameObject Axe;
+        [SerializeField] GameObject[] Axes = new GameObject[3];
         [SerializeField] PlayerCore _playerCore;
         
         void Start(){
@@ -37,13 +38,17 @@ namespace u1w.player
                 if(hit.collider.gameObject.TryGetComponent<IDamaged>(out IDamaged attack)){
                     attack.Damaged(_playerCore.HaveMagic);
                 }
+            }else{
+                _playerCore.HaveMagic.DeleteMagic();
             }
+
         }
 
         void PlayView(){
             float y= Dictionaries.AttackDirDictionary[_playerMove.NowDirection].y;
-            GameObject axe = Instantiate(Axe, this.transform.position, Quaternion.Euler(0,y,0));
+            GameObject axe = Instantiate(Axes[(int)_playerCore.HaveMagic.nowStyle], this.transform.position, Quaternion.Euler(0,y,0));
             axe.transform.SetParent(this.gameObject.transform);
+            // axe.GetComponent<Pickel>().SetMaterial();
         }
 
     }

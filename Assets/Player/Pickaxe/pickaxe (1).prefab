@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4869312055158877238}
   - component: {fileID: 4869312055158877234}
   - component: {fileID: 4869312055158877235}
+  - component: {fileID: 3849482373624529727}
   m_Layer: 0
   m_Name: pickaxe (1)
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5715679608646119816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -48.53, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,7 +98,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3aa201c1cccb9374e90b01dfd66496c6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -115,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c359e0b9460e34aa2cc79255e03b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ani: 0
 --- !u!114 &4869312055158877235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PickaxeObject: {fileID: 5715679608646119816}
   PickaxeAttackParticle: {fileID: 6425113994010073691, guid: 5c1584535954c0e40a1c10a6d957c061, type: 3}
+--- !u!114 &3849482373624529727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715679608646119816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a64f5f89083a054789e82a900f824fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 1a43928f48a88f940b8964d5b32c7847, type: 2}
+  - {fileID: 2100000, guid: 6f4aa2e88bee73049968a9131866a72c, type: 2}
+  - {fileID: 2100000, guid: c532880e607f8c84d8b9bf0c46a522ad, type: 2}

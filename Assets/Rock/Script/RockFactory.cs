@@ -17,6 +17,8 @@ namespace u1w.Rock
 
         PhaseManager _phaseManager;
 
+        // List<int[]> rockies = new List<int[]>();
+
         void Start(){
             _phaseManager = PhaseManager.I;
             _phaseManager.State
@@ -27,8 +29,8 @@ namespace u1w.Rock
 
         void InstantRock(){
             //エフェクト再生
-            GameObject effect = Instantiate(SpawnEffect, Vector3.zero, Quaternion.identity);
-            effect.transform.SetParent(this.gameObject.transform);
+            // GameObject effect = Instantiate(SpawnEffect, Vector3.zero, Quaternion.identity);
+            // effect.transform.SetParent(this.gameObject.transform);
 
             GameObject rock = Instantiate(RockPre, Vector3.zero, Quaternion.identity);
             rock.transform.SetParent(this.gameObject.transform);
@@ -40,11 +42,12 @@ namespace u1w.Rock
             while(true){
                 x = (float)Random.Range(0,StageSetting.X);
                 z = (float)Random.Range(0,StageSetting.Y);
+                //チェック
                 if(x != 0 && z != 0)    break;
             }
             
 
-            effect.transform.localPosition = new Vector3(x, 1f, z);
+            // effect.transform.localPosition = new Vector3(x, 1f, z);
             rock.transform.localPosition = new Vector3(x, 1f, z);
             
             rockCount++;

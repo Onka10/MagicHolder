@@ -80,7 +80,6 @@ namespace u1w.Tiles{
         
         public bool GetNextPosition(Direction direction, out Vector3 result){
             result = NextTiles[(int)direction].Pos;
-            Debug.Log(NextTiles[(int)direction].Pos);
             return NextTiles[(int)direction].OnLock;
         }
 
