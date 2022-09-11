@@ -17,4 +17,11 @@ public static class Dictionaries
         {Direction.south, Vector3.back},
         {Direction.west, Vector3.left},
     };
+
+
+    static public Dictionary<int, MagicType> MagicTypeDictionary = new Dictionary<int, MagicType>(){
+        {0, MagicType.Flame},
+        {1, MagicType.Water},
+        {2, MagicType.Wind},
+    };
 }

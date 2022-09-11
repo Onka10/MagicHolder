@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-namespace u1w.UI
+namespace u1w.player
 {
     public class MagicView : MonoBehaviour
     {
@@ -13,15 +13,15 @@ namespace u1w.UI
         [SerializeField] Text textB;
         void Start()
         {
-            u1w.player.PlayerCore.I.UIReLoad
+            PlayerCore.I.UIReLoad
             .Subscribe(_ => Refresh())
             .AddTo(this);
         }
 
         void Refresh(){
-            textR.text = u1w.player.PlayerCore.I.MagicHolder.Flame.ToString();
-            textB.text = u1w.player.PlayerCore.I.MagicHolder.Water.ToString();
-            textG.text = u1w.player.PlayerCore.I.MagicHolder.Wind.ToString();
+            textR.text = PlayerCore.I.HaveMagic.Flame.ToString();
+            textB.text = PlayerCore.I.HaveMagic.Water.ToString();
+            textG.text = PlayerCore.I.HaveMagic.Wind.ToString();
         }
     }
 }

@@ -1,8 +1,7 @@
 /// <summary>
-/// 管理者へ
+/// 攻撃可能
 /// </summary>
-public interface IAttack
+public interface IDamaged
 {
-    //自分のガチ座標
     public void Damaged(Magic magic);
 }

@@ -24,3 +24,10 @@ public enum PhaseState
     EnemyAttack,
     TurnEnd
 }
+
+public enum MagicType
+{
+    Flame=0,
+    Water=1,
+    Wind=2
+}

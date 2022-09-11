@@ -12,6 +12,7 @@ namespace u1w.player
         PhaseManager _phaseManager;
 
         [SerializeField] GameObject Axe;
+        [SerializeField] PlayerCore _playerCore;
         
         void Start(){
             _phaseManager = PhaseManager.I;
@@ -25,19 +26,16 @@ namespace u1w.player
             //見た目
             PlayView();
 
-
             Ray Ray = new Ray (this.transform.position + new Vector3(0.0f, 0.0f, 0.0f), Dictionaries.AttackDirDictionary[_playerMove.NowDirection]);
-
             RaycastHit hit;
             
             //デバッグ
             Debug.DrawRay(Ray.origin, Ray.direction * 10, Color.blue,10f);
             
             if (Physics.Raycast(Ray,out hit)){
-                if(hit.collider.gameObject.TryGetComponent<IAttack>(out IAttack attack)){
-                    attack.Damaged(new Magic(1,1,1));
+                if(hit.collider.gameObject.TryGetComponent<IDamaged>(out IDamaged attack)){
+                    attack.Damaged(_playerCore.HaveMagic);
                 }
-                
             }
         }
 

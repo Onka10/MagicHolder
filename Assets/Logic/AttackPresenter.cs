@@ -22,11 +22,17 @@ namespace u1w
 
         void RockAttack(){
             var damage = _rock.GetAtk();
-            
             if(damage == 0) return;
 
+            StartCoroutine ("waitAnimation");
             _playerCore.Damage(damage);
+        }
+
+        private IEnumerator waitAnimation() {
+            yield return new WaitForSeconds (4.0f);
+
             CameraShake.I.Shake(0.25f, 0.1f);
+            
         }
     }
 }

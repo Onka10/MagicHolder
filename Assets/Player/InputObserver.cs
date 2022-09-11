@@ -13,6 +13,7 @@ namespace u1w.player
             public IObservable<Unit> OnA => _a;
             public IObservable<Unit> OnS => _s;
             public IObservable<Unit> OnD => _d;
+             public IObservable<Unit> OnCtrl => _ctrl;
             // public IObservable<Unit> OnSpace => _d;
 
 
@@ -20,6 +21,7 @@ namespace u1w.player
             private readonly Subject<Unit> _a = new Subject<Unit>();
             private readonly Subject<Unit> _s = new Subject<Unit>();
             private readonly Subject<Unit> _d = new Subject<Unit>();
+            private readonly Subject<Unit> _ctrl = new Subject<Unit>();
 
 
         private void Update()
@@ -36,6 +38,7 @@ namespace u1w.player
             var aKey = current.aKey;
             var sKey = current.sKey;
             var dKey = current.dKey;
+            var ctrlKey = current.ctrlKey;
             var spaceKey = current.spaceKey;
 
             // Wキーが押された瞬間かどうか
@@ -49,6 +52,8 @@ namespace u1w.player
 
             // Dキーが押された瞬間かどうか
             if (dKey.wasPressedThisFrame)   _d.OnNext(Unit.Default);
+
+            if (ctrlKey.wasPressedThisFrame)   _ctrl.OnNext(Unit.Default);
 
             // Spaceキーが押された瞬間かどうか
             if (spaceKey.wasPressedThisFrame)
