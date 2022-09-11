@@ -32,9 +32,18 @@ public class Magic:IGetMagic
 
     //入力
     public void Add(Color c){
-        if(c==Color.red)    flame++;
-        if(c==Color.blue)   water++;
-        if(c==Color.green)  wind++;
+        if(c==Color.red){
+            flame++;
+            flame =  Mathf.Clamp(flame, 0, 10);
+        }
+        if(c==Color.blue){
+            water++;
+            water = Mathf.Clamp(water, 0, 10);
+        }   
+        if(c==Color.green){
+            wind++;
+            wind = Mathf.Clamp(wind, 0, 10);
+        }  
     }
 
 
@@ -47,14 +56,15 @@ public class Magic:IGetMagic
 
     //外部出力
     public void GetDamage(out int damage){
-        DelleteMagic();
         if(nowStyle == MagicType.Flame) damage = Flame;
         if(nowStyle == MagicType.Water) damage = Water;
         else damage = Wind;
 
-        DelleteMagic();
+        DeleteMagic();
     }
-    void DelleteMagic(){
+
+    //攻撃したらダメージ計算後に、外れたらすぐに実行する
+    public void DeleteMagic(){
         if(nowStyle == MagicType.Flame) flame = 0;
         else if(nowStyle == MagicType.Water) water=0;
         else if(nowStyle == MagicType.Wind) wind = 0;

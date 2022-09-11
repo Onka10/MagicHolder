@@ -6,8 +6,7 @@ using UniRx.Triggers;
 
 public class Pickel : MonoBehaviour,IOutofDead
 {
-    // transformを取得
-    // Transform myTransform;
+    [SerializeField] Material[] materials = new Material[3];
 
     void Start()
     {
@@ -24,14 +23,9 @@ public class Pickel : MonoBehaviour,IOutofDead
         Dead();
     }
 
-    // void Move(){
-    //     Vector3 localPos = this.transform.localPosition;
-    //     // localPos.x = 1.0f;    // ローカル座標を基準にした、x座標を1に変更
-    //     // localPos.y = 1.0f;    // ローカル座標を基準にした、y座標を1に変更
-    //     localPos.z = 1.0f;    // ローカル座標を基準にした、z座標を1に変更
-
-    //     this.transform.localPosition = localPos; // ローカル座標での座標を設定
-    // }
+    public void SetMaterial(int i){
+        this.gameObject.GetComponent<Renderer>().material = materials[i];
+    }
 
     void Update(){
  

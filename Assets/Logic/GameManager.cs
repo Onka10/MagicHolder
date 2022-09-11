@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         _state.Value = GameState.Title;
 
         //準備処理スタートの合図
-        Debug.Log("ready");
+        // Debug.Log("ready");
         _state.Value = GameState.Ready;
         // await Ready();
 
@@ -46,7 +46,6 @@ public class GameManager : Singleton<GameManager>
         //tileの生成
         await _tileManager.FuncAsync;
         await UniTask.Delay(500);
-        Debug.Log("rayとばすよ");
         //rayを飛ばす指示
         _ready2.OnNext(Unit.Default);
     }

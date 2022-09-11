@@ -38,12 +38,12 @@ namespace u1w
                 //魔法発動
                 _state.Value = PhaseState.PlayerAttack;
                 Debug.Log("プレイヤー攻撃");
-                await UniTask.Delay(2000);
+                await UniTask.Delay(3000);
 
                 //岩が攻撃:攻撃とアニメーション終了まち
                 _state.Value = PhaseState.EnemyAttack;
                 Debug.Log("岩攻撃");
-                await UniTask.Delay(1000);
+                await UniTask.Delay(2000);
                 
                 //終了判定
                 if(_playerCore.IsGameOver) break;

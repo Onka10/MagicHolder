@@ -13,8 +13,8 @@ namespace u1w.player
             public IObservable<Unit> OnA => _a;
             public IObservable<Unit> OnS => _s;
             public IObservable<Unit> OnD => _d;
-             public IObservable<Unit> OnCtrl => _ctrl;
-            // public IObservable<Unit> OnSpace => _d;
+            public IObservable<Unit> OnCtrl => _ctrl;
+            public IObservable<Unit> OnSpace => _spc;
 
 
             private readonly Subject<Unit> _w = new Subject<Unit>();          
@@ -22,6 +22,7 @@ namespace u1w.player
             private readonly Subject<Unit> _s = new Subject<Unit>();
             private readonly Subject<Unit> _d = new Subject<Unit>();
             private readonly Subject<Unit> _ctrl = new Subject<Unit>();
+            private readonly Subject<Unit> _spc = new Subject<Unit>();
 
 
         private void Update()
@@ -58,7 +59,7 @@ namespace u1w.player
             // Spaceキーが押された瞬間かどうか
             if (spaceKey.wasPressedThisFrame)
             {
-                Debug.Log("てすと");
+                _spc.OnNext(Unit.Default);
             }
         }
 

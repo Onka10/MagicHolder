@@ -22,6 +22,7 @@ namespace u1w.player
         public IReadOnlyReactiveProperty<int> HP => _hp;
         private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(MaxHP);
         public bool IsGameOver=false;
+        [SerializeField] GameObject ui;
 
 
         //最初は0,0のTileを入れておくこと！
@@ -46,6 +47,11 @@ namespace u1w.player
             .AddTo(this);
 
             _magic.nowStyle = MagicType.Flame;
+
+            PhaseManager.I.State
+            .Where(s => s == PhaseState.EnemyAttack)
+            .Subscribe(_ => _getColor.OnNext(Unit.Default))
+            .AddTo(this);
         }
 
 
@@ -74,6 +80,7 @@ namespace u1w.player
 
         void GameOver(){
             IsGameOver=true;
+            ui.SetActive(true);
         }
     }
 }

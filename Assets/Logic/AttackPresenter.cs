@@ -12,6 +12,8 @@ namespace u1w
         
         PhaseManager _phaseManager;
 
+        int damage;
+
         void Start(){
             _phaseManager = PhaseManager.I;
             _phaseManager.State
@@ -21,17 +23,15 @@ namespace u1w
         }
 
         void RockAttack(){
-            var damage = _rock.GetAtk();
+            damage = _rock.GetAtk();
             if(damage == 0) return;
-
             StartCoroutine ("waitAnimation");
-            _playerCore.Damage(damage);
-            SoundManager.I.PlayRockAttack();
         }
 
         private IEnumerator waitAnimation() {
-            yield return new WaitForSeconds (4.0f);
-
+            yield return new WaitForSeconds (1.5f);
+            _playerCore.Damage(damage);
+            SoundManager.I.PlayRockAttack();
             CameraShake.I.Shake(0.25f, 0.1f);
             
         }
