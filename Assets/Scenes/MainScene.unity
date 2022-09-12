@@ -4703,6 +4703,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 520805663}
     m_Modifications:
+    - target: {fileID: 8044538532665680145, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680145, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680147, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680147, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680147, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680149, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680151, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680151, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680153, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680153, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680155, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
+    - target: {fileID: 8044538532665680155, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ef284cf5ca52a3e4eaf835f1a0f9364e, type: 2}
     - target: {fileID: 8044538532668796187, guid: 6d7c8963673ad83498db8ede58208f6b, type: 3}
       propertyPath: m_Name
       value: SD_unitychan_humanoid
