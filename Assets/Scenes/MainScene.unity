@@ -1632,7 +1632,6 @@ GameObject:
   - component: {fileID: 715753167}
   - component: {fileID: 715753166}
   - component: {fileID: 715753165}
-  - component: {fileID: 715753164}
   m_Layer: 0
   m_Name: Magma
   m_TagString: Untagged
@@ -1640,20 +1639,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &715753164
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 715753163}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &715753165
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3607,7 +3592,6 @@ GameObject:
   - component: {fileID: 1756479188}
   - component: {fileID: 1756479187}
   - component: {fileID: 1756479186}
-  - component: {fileID: 1756479185}
   m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
@@ -3615,20 +3599,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1756479185
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756479184}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1756479186
 MeshRenderer:
   m_ObjectHideFlags: 0
