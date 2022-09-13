@@ -17,7 +17,7 @@ namespace u1w.Rock
 
         PhaseManager _phaseManager;
 
-        // List<int[]> rockies = new List<int[]>();
+        List<Vector3> rockies = new List<Vector3>();
 
         void Start(){
             _phaseManager = PhaseManager.I;
@@ -25,6 +25,8 @@ namespace u1w.Rock
             .Where(s => s==PhaseState.EnemyInsight)
             .Subscribe(_ => InstantRock())
             .AddTo(this);
+
+            rockies[0] = new Vector3(0,0,0);
         }
 
         void InstantRock(){
@@ -43,13 +45,20 @@ namespace u1w.Rock
                 x = (float)Random.Range(0,StageSetting.X);
                 z = (float)Random.Range(0,StageSetting.Y);
                 //チェック
-                if(x != 0 && z != 0)    break;
+                if(x != 0 && z != 0 && !checkList())    break;
             }
             
+            bool checkList(){
+                for(int i=1;i<rockies.Count;i++){
+                    if(rockies[i] == new Vector3(x, 1f, z))  return true;
+                }
+                return false;
+            }
 
             // effect.transform.localPosition = new Vector3(x, 1f, z);
             rock.transform.localPosition = new Vector3(x, 1f, z);
             
+            rockies.Add(rock.transform.position);
             rockCount++;
         }
 
