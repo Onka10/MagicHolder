@@ -1765,8 +1765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textR: {fileID: 1930685771}
-  textG: {fileID: 1542095166}
-  textB: {fileID: 1962500142}
+  textG: {fileID: 1962500142}
+  textB: {fileID: 1542095166}
 --- !u!1 &841343274
 GameObject:
   m_ObjectHideFlags: 0
