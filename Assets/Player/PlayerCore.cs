@@ -4,25 +4,17 @@ using UnityEngine;
 using UniRx;
 using System;
 using Cysharp.Threading.Tasks;
+using u1w.player;
 
-namespace u1w.player
+namespace u1w
 {
     public class PlayerCore : Singleton<PlayerCore>
     {
         public Magic HaveMagic => _magic;
         private Magic _magic = new Magic();
 
-        public IObservable<Unit> OnStyleChange => _reload;
-        private readonly Subject<Unit> _reload = new Subject<Unit>();
 
-        public IObservable<Unit> OnGetColor => _getColor;
-        private readonly Subject<Unit> _getColor = new Subject<Unit>();
-
-        public static readonly int MaxHP = 100;
-        public IReadOnlyReactiveProperty<int> HP => _hp;
-        private readonly ReactiveProperty<int> _hp = new ReactiveProperty<int>(MaxHP);
         public bool IsGameOver=false;
-        [SerializeField] GameObject ui;
 
 
         //最初は0,0のTileを入れておくこと！
@@ -31,27 +23,26 @@ namespace u1w.player
         [SerializeField] InputObserver _input;
         [SerializeField] StepCounter _step;
 
+        public IPlayerMove playerMove;
+        public IPlayerStyle playerStyle;
+        public IPlayerAttack playerAttack;
+        public IPlayerHP playerHP;
+        public IPlayerMagic playerMagic;
+
         void Start(){
-            _hp
-            .Where(hp => hp <= 0)
-            .Subscribe(_ =>GameOver())
-            .AddTo(this);
 
             _input.OnCtrl
-            .Where(_ => _step.Step.Value ==StepCounter.MaxStep)
             .Subscribe(_ =>{
-                _magic.StyleChange();
-                _reload.OnNext(Unit.Default);
-                SoundManager.I.PlayStyle();
+                playerStyle.StyleChange();
             })
             .AddTo(this);
 
-            _magic.nowStyle = MagicType.Flame;
-
             PhaseManager.I.State
-            .Where(s => s == PhaseState.EnemyAttack)
-            .Subscribe(_ => _getColor.OnNext(Unit.Default))
+            .Where(s => s==PhaseState.PlayerAttack)
+            .Subscribe(_ => playerAttack.Attack())
             .AddTo(this);
+
+            // _magic.nowStyle = MagicType.Flame;
         }
 
 
@@ -66,21 +57,11 @@ namespace u1w.player
             _nowTile = result;
 
             //色入手
-            GotColor(_nowTile.GetComponent<IGetTileData>().GetColor());
-        }
-
-        void GotColor(Color color){
-            _magic.Add(color);
-            _getColor.OnNext(Unit.Default);
+            playerMagic.AddMagiCell(_nowTile.GetComponent<IGetTileData>().GetColor());
         }
 
         public void Damage(int atk){
-            _hp.Value -= atk;
-        }
-
-        void GameOver(){
-            IsGameOver=true;
-            ui.SetActive(true);
+            playerHP.Damage(atk);
         }
     }
 }

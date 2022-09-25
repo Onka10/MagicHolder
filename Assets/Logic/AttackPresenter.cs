@@ -8,7 +8,7 @@ namespace u1w
     public class AttackPresenter : MonoBehaviour
     {
         [SerializeField] u1w.Rock.RockFactory _rock;
-        [SerializeField] u1w.player.PlayerCore _playerCore;
+        [SerializeField] u1w.PlayerCore _playerCore;
         
         PhaseManager _phaseManager;
 

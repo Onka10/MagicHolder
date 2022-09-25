@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 namespace u1w.Tiles{
-    public class Title : MonoBehaviour,IGetTileData,ILock,ILocked
+    public class Tile:MonoBehaviour
     {
         #region プロパティ
         //色
@@ -13,7 +13,6 @@ namespace u1w.Tiles{
         private readonly ReactiveProperty<Color> _color = new ReactiveProperty<Color>();
 
         [SerializeField] bool IsFirstTile;
-        TileManager _tileManager;
 
         TileData myTileData;
         private TileData[] NextTiles = new TileData[4];
@@ -31,8 +30,8 @@ namespace u1w.Tiles{
             .AddTo(this);
 
             //ずっと購読
-            _tileManager = TileManager.I;
-            _tileManager.ReCharge
+            PhaseManager.I.State
+            .Where(s => s==PhaseState.TurnEnd)
             .Where(_ => _color.Value == Color.black)
             .Subscribe(_ => SetColor())
             .AddTo(this);

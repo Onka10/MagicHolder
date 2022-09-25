@@ -1,13 +1,11 @@
 using UnityEngine;
 public interface IGetMagic{
-    public void GetDamage(out int damage);
-    public MagicType GetMagicType();
+    // public void GetDamage(out int damage);
+    // public MagicType GetMagicType();
 }
 
 public class Magic:IGetMagic
 {
-    public MagicType nowStyle;
-
     public int Flame =>flame;
     private int flame;
 
@@ -48,31 +46,25 @@ public class Magic:IGetMagic
 
 
 
-    public void StyleChange(){
-        if(nowStyle == MagicType.Flame) nowStyle = MagicType.Water;
-        else if(nowStyle == MagicType.Water) nowStyle = MagicType.Wind;
-        else if(nowStyle == MagicType.Wind) nowStyle = MagicType.Flame;
-    }
-
     //外部出力
-    public void GetDamage(out int damage){
-        if(nowStyle == MagicType.Flame) damage = Flame;
-        if(nowStyle == MagicType.Water) damage = Water;
-        else damage = Wind;
+    // public void GetDamage(out int damage){
+    //     if(nowStyle == MagicType.Flame) damage = Flame;
+    //     if(nowStyle == MagicType.Water) damage = Water;
+    //     else damage = Wind;
 
-        DeleteMagic();
-    }
+    //     DeleteMagic();
+    // }
 
     //攻撃したらダメージ計算後に、外れたらすぐに実行する
-    public void DeleteMagic(){
-        if(nowStyle == MagicType.Flame) flame = 0;
-        else if(nowStyle == MagicType.Water) water=0;
-        else if(nowStyle == MagicType.Wind) wind = 0;
-    }
+    // public void DeleteMagic(MagicType nowStyle){
+    //     if(nowStyle == MagicType.Flame) flame = 0;
+    //     else if(nowStyle == MagicType.Water) water=0;
+    //     else if(nowStyle == MagicType.Wind) wind = 0;
+    // }
 
-    public MagicType GetMagicType(){
-        return nowStyle;
-    }
+    // public MagicType GetMagicType(){
+    //     return nowStyle;
+    // }
 }
 
 

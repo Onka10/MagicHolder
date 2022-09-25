@@ -11,11 +11,13 @@ namespace u1w.player
         [SerializeField] Text textR;
         [SerializeField] Text textG;
         [SerializeField] Text textB;
+
+        [SerializeField] PlayerMagicHold _magicHold;
         void Start()
         {
-            PlayerCore.I.OnGetColor
-            .Subscribe(_ => Refresh())
-            .AddTo(this);
+            // PlayerCore.I.OnGetColor
+            // .Subscribe(_ => Refresh())
+            // .AddTo(this);
         }
 
         void Refresh(){

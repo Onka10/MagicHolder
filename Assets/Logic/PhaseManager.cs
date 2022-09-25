@@ -10,7 +10,7 @@ namespace u1w
         private readonly ReactiveProperty<PhaseState> _state = new ReactiveProperty<PhaseState>();
 
         [SerializeField] u1w.player.StepCounter _stepCounter;
-        [SerializeField] u1w.player.PlayerCore _playerCore;
+        [SerializeField] u1w.PlayerCore _playerCore;
 
         void Start()
         {

@@ -11,7 +11,7 @@ public class GameOverManager : MonoBehaviour
     void Start()
     {
             _input.OnSpace
-            .Where(_ => u1w.player.PlayerCore.I.IsGameOver)
+            .Where(_ => u1w.PlayerCore.I.IsGameOver)
             .Subscribe(_ =>{
                 SceneManager.LoadScene("title");
             })

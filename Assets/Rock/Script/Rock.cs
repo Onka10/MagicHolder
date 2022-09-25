@@ -38,35 +38,35 @@ namespace u1w.Rock
         }
 
         public void Damaged(IGetMagic magic){
-            // //ダメージ計算
-            magic.GetDamage(out int atk);
-            float damage = (float)atk * ThreeWay.CalcDamageRate(magic.GetMagicType(),magicType);
-            hp.Value -= (int)damage;
+            // // //ダメージ計算
+            // magic.GetDamage(out int atk);
+            // // float damage = (float)atk * ThreeWay.CalcDamageRate(magic.GetMagicType(),magicType);
+            // hp.Value -= (int)damage;
 
-            Debug.Log("のこり"+hp);
+            // Debug.Log("のこり"+hp);
 
-            if(hp.Value <= 0){
-                //マスのLockを解除
-                //チェックと入手を兼ねている
-                if(!new GetTile().GetTileObject(transform.position,out var result)) return;
-                result.GetComponent<ILock>().UnLockOfRock();
+            // if(hp.Value <= 0){
+            //     //マスのLockを解除
+            //     //チェックと入手を兼ねている
+            //     if(!new GetTile().GetTileObject(transform.position,out var result)) return;
+            //     result.GetComponent<ILock>().UnLockOfRock();
 
-                _rockFactory.DeadCall();
-                ScoreManager.I.AddScore();
-                StartCoroutine("Destroy");
-            }
+            //     _rockFactory.DeadCall();
+            //     ScoreManager.I.AddScore();
+            //     StartCoroutine("Destroy");
+            // }
         }        
 
-        IEnumerator Destroy()
-        {
-            yield return new WaitForSeconds(3);
-            //エフェクト再生 
-            CameraShake.I.Shake(0.25f, 0.5f);
-            view.PlayDestroy();
-            SoundManager.I.PlayPlayerAttack();
+        // IEnumerator Destroy()
+        // {
+        //     yield return new WaitForSeconds(3);
+        //     //エフェクト再生 
+        //     CameraShake.I.Shake(0.25f, 0.5f);
+        //     view.PlayDestroy();
+        //     SoundManager.I.PlayPlayerAttack();
             
-            Destroy(this.gameObject);
-        }
+        //     Destroy(this.gameObject);
+        // }
       
     }
 }

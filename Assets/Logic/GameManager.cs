@@ -4,6 +4,11 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using System;
+using u1w.player;
+using u1w.Rock;
+using u1w.Tiles;
+
+using u1w;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,8 +20,8 @@ public class GameManager : Singleton<GameManager>
     private Subject<Unit> _ready2 = new Subject<Unit>();
 
 
-    [SerializeField] u1w.Tiles.TileManager _tileManager;
-    [SerializeField] u1w.player.PlayerCore _playerCore;
+    [SerializeField] TileManager _tileManager;
+    [SerializeField] PlayerCore _playerCore;
 
 
     // Start is called before the first frame update

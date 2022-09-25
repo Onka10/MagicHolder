@@ -32,6 +32,10 @@ namespace u1w.player
             if(_step.Value <= 0)    turnEnd = true;
         }
 
+        public bool CanMove(){
+            return _step.Value > 0;
+        }
+
         void ResetStep(){
             turnEnd = false;
             _step.Value = MaxStep;

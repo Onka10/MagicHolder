@@ -4,12 +4,15 @@ using UnityEngine;
 using UniRx;
 using System;
 
+public interface IPlayerMove{
+    
+}
+
 namespace u1w.player
 {
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] InputObserver _input;
-        [SerializeField] StepCounter _stepCounter;
 
         PhaseManager _phaseManager;
 
@@ -24,46 +27,47 @@ namespace u1w.player
 
             _input.OnW
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
-            .Where(_ => _stepCounter.Step.Value > 0)
+            .Where(_ => PlayerFacade.I.CanMove())
             .ThrottleFirst(TimeSpan.FromSeconds(.5))
             .Subscribe(_ => Check(Direction.north))
             .AddTo(this);
 
             _input.OnA
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
-            .Where(_ => _stepCounter.Step.Value > 0)
+            .Where(_ => PlayerFacade.I.CanMove())
             .ThrottleFirst(TimeSpan.FromSeconds(.5))
             .Subscribe(_ => Check(Direction.west))
             .AddTo(this);
 
             _input.OnS
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
-            .Where(_ => _stepCounter.Step.Value > 0)
+            .Where(_ => PlayerFacade.I.CanMove())
             .ThrottleFirst(TimeSpan.FromSeconds(.5))
             .Subscribe(_ => Check(Direction.south))
             .AddTo(this);
 
             _input.OnD
             .Where(_ => _phaseManager.State.Value == PhaseState.PlayerTurn)
-            .Where(_ => _stepCounter.Step.Value > 0)
+            .Where(_ => PlayerFacade.I.CanMove())
             .ThrottleFirst(TimeSpan.FromSeconds(.5))
             .Subscribe(_ => Check(Direction.east))
             .AddTo(this);
 
-            _playerCore = u1w.player.PlayerCore.I;
+            _playerCore = u1w.PlayerCore.I;
         }
 
         void Check(Direction d){
             //ダメか確認
-            if(_playerCore.NowTile.GetComponent<IGetTileData>().GetNextPosition(d,out var NextPos))  return;
+            if(u1w.Tiles.TileManager.I.MovePlayer(d,out var NextPos))  return;
             this.gameObject.transform.position = NextPos + new Vector3(0,.8f,0);
 
             //方向を変える
             this.gameObject.transform.eulerAngles = Dictionaries.OwnDirDictionary[d];
             NowDirection = d;
 
-            _stepCounter.Count();
-            _playerCore.GetTile();
+            PlayerFacade.I.AddSteps();
+
+            // _playerCore.GetTile();
             SoundManager.I.PlayerMove();
         }
 

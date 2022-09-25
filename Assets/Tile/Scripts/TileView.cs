@@ -13,7 +13,7 @@ namespace u1w.Tiles
         public Material wind;
         public Material none;
 
-        [SerializeField] Tiles.Title _tile;
+        [SerializeField] Tile _tile;
 
         [SerializeField] MeshRenderer _mesh;
         void Start(){

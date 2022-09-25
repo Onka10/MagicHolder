@@ -26,7 +26,8 @@ namespace u1w.Rock
             .Subscribe(_ => InstantRock())
             .AddTo(this);
 
-            rockies[0] = new Vector3(0,0,0);
+            //FIXME
+            // rockies[0] = new Vector3(0,0,0);
         }
 
         void InstantRock(){

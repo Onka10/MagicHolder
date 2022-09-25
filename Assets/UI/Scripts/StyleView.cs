@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-namespace u1w
+namespace u1w.player
 {
     public class StyleView : MonoBehaviour
     {
@@ -10,16 +10,14 @@ namespace u1w
         [SerializeField] Image image;
         [SerializeField] GameObject UI;
 
-        u1w.player.PlayerCore _playerCore;
+        PlayerStyle _playerStyle;
         [SerializeField]  u1w.player.StepCounter _step;
 
         void Start()
         {
-            _playerCore = u1w.player.PlayerCore.I;
-
-            _playerCore.OnStyleChange
-            .Subscribe(_ => Refresh())
-            .AddTo(this);
+            // _playerStyle.OnStyleChange
+            // .Subscribe(_ => Refresh())
+            // .AddTo(this);
 
             _step.Step
             .Subscribe(s =>{
@@ -29,14 +27,14 @@ namespace u1w
             .AddTo(this);
         }
 
-        void Refresh(){
-            text.text = _playerCore.HaveMagic.nowStyle.ToString();
+        // void Refresh(){
+        //     text.text = _playerCore.HaveMagic.nowStyle.ToString();
 
-            var nowMagicType = _playerCore.HaveMagic.nowStyle;
+        //     var nowMagicType = _playerCore.HaveMagic.nowStyle;
 
-            if(nowMagicType == MagicType.Flame) image.color = Color.red;
-            else if(nowMagicType == MagicType.Water) image.color = Color.blue;
-            else if(nowMagicType == MagicType.Wind) image.color = Color.green;
-        }
+        //     if(nowMagicType == MagicType.Flame) image.color = Color.red;
+        //     else if(nowMagicType == MagicType.Water) image.color = Color.blue;
+        //     else if(nowMagicType == MagicType.Wind) image.color = Color.green;
+        // }
     }
 }
